@@ -24,11 +24,13 @@ class World  {
         setInterval(() => {
                 this.level.enemies.forEach((enemy) => {
                    if(this.character.isColliding(enemy)) {
-                    console.log('Collision with', enemy);
+                    this.character.hit();
                    }
                 });
         }, 200);
     }
+
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
