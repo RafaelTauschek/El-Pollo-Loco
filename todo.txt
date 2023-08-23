@@ -5,6 +5,7 @@ TO DO:
 => Backgroundimage
 => Collect Coins
 => Collect Bottles
+=> StatusBars
 => Only Throw Bottle if aviable
 => Collision (jumping on chicken and bottle impact)
 => Small Chicken

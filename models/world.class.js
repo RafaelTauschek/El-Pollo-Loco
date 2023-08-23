@@ -29,7 +29,7 @@ class World  {
         }, 200);
     }
 
-    checkThrowObjects () {d
+    checkThrowObjects () {
         if (this.keyboard.THROW) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
