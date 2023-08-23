@@ -1,0 +1,15 @@
+TO DO:
+
+=> Start Screen
+=> Music + Sounds (+ disable/enabling)
+=> Backgroundimage
+=> Collect Coins
+=> Collect Bottles
+=> Only Throw Bottle if aviable
+=> Collision (jumping on chicken and bottle impact)
+=> Small Chicken
+=> Final Boss
+=> Game-Over screen
+=> Fullscreen
+=> Explanation (which key does what)
+=> Mobile Version
