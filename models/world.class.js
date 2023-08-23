@@ -2,6 +2,7 @@ class World  {
 
     character = new Character();
     statusBar = new StatusBar();
+    throwableObject = [];
     level = level1;
     canvas;
     ctx;
@@ -14,24 +15,35 @@ class World  {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     }
 
     setWorld() {
         this.character.world = this;
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-                this.level.enemies.forEach((enemy) => {
-                   if(this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    this.statusBar.setPercentage(this.character.energy);
-                   }
-                });
+            this.checkCollisions();
+            this.checkThrowObjects();
         }, 200);
     }
 
+    checkThrowObjects () {d
+        if (this.keyboard.THROW) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            this.throwableObject.push(bottle);
+        }
+    }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if(this.character.isColliding(enemy)) {
+             this.character.hit();
+             this.statusBar.setPercentage(this.character.energy);
+            }
+         });
+    }
 
 
     draw() {
@@ -48,8 +60,9 @@ class World  {
 
 
         this.addToMap(this.character);
-        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObject);
         
         this.ctx.translate(-this.camera_x, 0);
         // Draw() wird immer wieder aufgerufen

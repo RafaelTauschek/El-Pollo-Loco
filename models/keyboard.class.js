@@ -6,4 +6,5 @@ UP = false;
 SPACE = false;
 THROW = false;
 DOWN = false;
+THROW = false;
 }
