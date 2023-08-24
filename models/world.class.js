@@ -2,7 +2,7 @@ class World  {
 
     character = new Character();
     statusBar = new StatusBar();
-    throwableObject = [];
+    throwableObject = [new ThrowableObject];
     level = level1;
     canvas;
     ctx;
@@ -31,7 +31,6 @@ class World  {
 
     checkThrowObjects () {
         if (this.keyboard.THROW) {
-            console.log('throw bottle');
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
         }

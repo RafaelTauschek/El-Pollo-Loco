@@ -29,12 +29,15 @@ class ThrowableObject extends MovableObject {
 
 
     animate() {
-
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_THROW);
+        }, 50)
     }
-
+ 
     throw() {
         this.speedY = 30;
         this.applyGravity();
+        this.animate();
         setInterval(() => {
             this.x += 10;
         }, 25);
