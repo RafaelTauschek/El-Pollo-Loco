@@ -43,7 +43,7 @@ class World  {
                 // FUNCTION
             } else if(this.character.isColliding(enemy)) {
              this.character.hit();
-             this.healthBar.setPercentage(this.character.energy);
+             this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);
             }
          });
     }
