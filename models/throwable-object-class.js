@@ -22,6 +22,10 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.height = 60;
         this.width = 50;
+        this.offsetY = -5;
+        this.offsetX = 0;
+        this.offsetWidth = 0;
+        this.offsetHeight = 10;
         this.loadImages(this.IMAGES_THROW);
         this.loadImages(this.IMAGES_IMPACT);
         this.throw();

@@ -11,26 +11,28 @@ function init() {
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 39) {   
         keyboard.RIGHT = true;
+        keyboard.NOKEY = false;
     }
 
     if (e.keyCode == 37) {    
         keyboard.LEFT = true;
+        keyboard.NOKEY = false;
     }
 
     if (e.keyCode == 38) {    
         keyboard.UP = true;
+        keyboard.NOKEY = false;
     }
 
-    if (e.keyCode == 40) {
-        keyboard.DOWN = true;
-    }
 
     if (e.keyCode == 32) {    
         keyboard.SPACE = true;
+        keyboard.NOKEY = false;
     }
 
     if (e.keyCode == 68) {
         keyboard.THROW = true;
+        keyboard.NOKEY = false;
     }
 });
 
@@ -38,25 +40,26 @@ window.addEventListener('keydown', (e) => {
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 39) {   
         keyboard.RIGHT = false;
+        keyboard.NOKEY = true;
     }
 
     if (e.keyCode == 37) {    
         keyboard.LEFT = false;
+        keyboard.NOKEY = true;
     }
 
     if (e.keyCode == 38) {    
         keyboard.UP = false;
-    }
-
-    if (e.keyCode == 40) {
-        keyboard.DOWN = false;
+        keyboard.NOKEY = true;
     }
 
     if (e.keyCode == 32) {    
         keyboard.SPACE = false;
+        keyboard.NOKEY = true;
     }
     if (e.keyCode == 68) {
         keyboard.THROW = false;
+        keyboard.NOKEY = true;
     }
 });
 
