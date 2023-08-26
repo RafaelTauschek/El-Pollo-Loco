@@ -1,13 +1,14 @@
 class World  {
 
     character = new Character();
-    statusBar = new StatusBar();
+    healthBar = new HealthBar();
     throwableObject = [new ThrowableObject];
     level = level1;
     canvas;
     ctx;
     keyboard;
     camera_x = 0;
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -42,7 +43,7 @@ class World  {
                 // FUNCTION
             } else if(this.character.isColliding(enemy)) {
              this.character.hit();
-             this.statusBar.setPercentage(this.character.energy);
+             this.healthBar.setPercentage(this.character.energy);
             }
          });
     }
@@ -57,7 +58,7 @@ class World  {
 
         this.ctx.translate(-this.camera_x, 0);
         // ------- SPACE for fixed Objects
-        this.addToMap(this.statusBar);
+        this.addToMap(this.healthBar);
         this.ctx.translate(this.camera_x, 0);
 
 
