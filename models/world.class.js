@@ -2,6 +2,7 @@ class World  {
 
     character = new Character();
     healthBar = new HealthBar();
+    coinBar = new CoinBar();
     throwableObject = [new ThrowableObject];
     level = level1;
     canvas;
@@ -59,6 +60,7 @@ class World  {
         this.ctx.translate(-this.camera_x, 0);
         // ------- SPACE for fixed Objects
         this.addToMap(this.healthBar);
+        this.addToMap(this.coinBar)
         this.ctx.translate(this.camera_x, 0);
 
 
