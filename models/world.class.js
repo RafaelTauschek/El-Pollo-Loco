@@ -52,15 +52,10 @@ class World  {
     }
 
     checkCollecting() {
-        const coinsToRemove = [];
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
-                coinsToRemove.push(index);
+                this.level.coins.splice(index, 1);
             }
-        });
-        coinsToRemove.reverse();
-        coinsToRemove.forEach((index) => {
-            this.level.coins.splice(index, 1);
         });
     }
 
@@ -81,6 +76,7 @@ class World  {
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObject);
         
