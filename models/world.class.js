@@ -3,6 +3,7 @@ class World  {
     character = new Character();
     healthBar = new HealthBar();
     coinBar = new CoinBar();
+    bottleBar = new BottleBar();
     throwableObject = [new ThrowableObject];
     level = level1;
     canvas;
@@ -56,16 +57,17 @@ class World  {
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);
-
+        this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_x, 0);
         // ------- SPACE for fixed Objects
         this.addToMap(this.healthBar);
-        this.addToMap(this.coinBar)
+        this.addToMap(this.coinBar);
+        this.addToMap(this.bottleBar);
         this.ctx.translate(this.camera_x, 0);
 
 
         this.addToMap(this.character);
-        this.addObjectsToMap(this.level.clouds);
+        
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObject);
         
