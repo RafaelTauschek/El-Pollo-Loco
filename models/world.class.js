@@ -29,6 +29,7 @@ class World  {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
+            this.checkCollecting();
         }, 200);
     }
 
@@ -42,7 +43,7 @@ class World  {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpingOn(enemy)) {
-                // FUNCTION
+                
             } else if(this.character.isColliding(enemy)) {
              this.character.hit();
              this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);
@@ -50,6 +51,18 @@ class World  {
          });
     }
 
+    checkCollecting() {
+        const coinsToRemove = [];
+        this.level.coins.forEach((coin, index) => {
+            if (this.character.isColliding(coin)) {
+                coinsToRemove.push(index);
+            }
+        });
+        coinsToRemove.reverse();
+        coinsToRemove.forEach((index) => {
+            this.level.coins.splice(index, 1);
+        });
+    }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
