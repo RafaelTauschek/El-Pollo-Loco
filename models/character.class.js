@@ -4,11 +4,11 @@ class Character extends MovableObject {
     width = 130;
     y = 80;
     speed = 6;
-    offsetX = -15;
-    offsetY = -110;
-    offsetWidth = 20;
-    offsetHeight = 120;
-
+    offsetY = -125;
+    offsetX = -5;
+    offsetWidth = 15;
+    offsetHeight = 140;
+ 
 
     IMAGES_IDLING = [
         'img/2_character_pepe/1_idle/idle/I-1.png',

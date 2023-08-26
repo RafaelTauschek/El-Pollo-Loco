@@ -22,12 +22,23 @@ class MovableObject extends DrawableObject {
             return this.y < 120;
         }
     }
-    
+
     isColliding(mo) {
-        return this.x - this.offsetX + this.width - this.offsetWidth > mo.x &&
-            this.y - this.offsetY + this.height - this.offsetHeight > mo.y &&
-            this.x - this.offsetX < mo.x + mo.width &&
-            this.y - this.offsetY < mo.y + mo.height;
+        return (
+            (this.x + this.width + this.offsetWidth) >= mo.x &&
+            this.x <= (mo.x + mo.width + mo.offsetWidth) &&
+            (this.y + this.offsetY + this.height + this.offsetHeight) >= mo.y &&
+            (this.y + this.offsetY) <= (mo.y + mo.height + mo.offsetHeight)
+        );
+    }
+
+    isJumpingOn(mo) {
+        return (
+            this.y - this.offsetY + this.height > mo.y &&
+            this.y - this.offsetY + this.height < mo.y + mo.height &&
+            this.x + this.width > mo.x &&
+            this.x < mo.x + mo.width
+        );
     }
 
     hit() {
