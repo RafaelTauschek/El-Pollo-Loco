@@ -3,10 +3,10 @@ class Coin extends CollactableObject {
     IMAGE = 'img/8_coin/coin_1.png';
     height = 100;
     width = 100;
-    offsetX = 0;
-    offsetY = 0;
-    offsetWidth = 0;
-    offsetHeight = 0;
+    offsetX = -30;
+    offsetY = -30;
+    offsetWidth = 60;
+    offsetHeight = 60;
 
     constructor (x, y) {
         super();
@@ -14,4 +14,4 @@ class Coin extends CollactableObject {
         this.x = x;
         this.y = y; 
     }
-}
+} 
