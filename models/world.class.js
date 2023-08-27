@@ -57,6 +57,11 @@ class World  {
                 this.level.coins.splice(index, 1);
             }
         });
+        this.level.bottles.forEach((bottle, index) => {
+            if (this.character.isColliding(bottle)) {
+                this.level.bottles.splice(index, 1);
+            }
+        });
     }
 
     draw() {
