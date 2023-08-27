@@ -4,10 +4,10 @@ class Bottle extends CollactableObject {
     height = 80;
     width = 70;
     y = 350;
-    offsetX = 0;
-    offsetY = 0;
-    offsetWidth = 0;
-    offsetHeight = 0;
+    offsetX = -20;
+    offsetY = -15;
+    offsetWidth = 35;
+    offsetHeight = 22;
 
     constructor (x) {
         super();

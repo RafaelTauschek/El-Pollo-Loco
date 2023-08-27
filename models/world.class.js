@@ -51,6 +51,7 @@ class World  {
          });
     }
 
+
     checkCollecting() {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
@@ -63,6 +64,8 @@ class World  {
             }
         });
     }
+
+    
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
