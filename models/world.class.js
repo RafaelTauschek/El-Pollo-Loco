@@ -42,8 +42,8 @@ class World  {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isJumpingOn(enemy)) {
-                
+            if (this.character.isJumpingOn(enemy) && this.character.isAboveGround()) {
+                console.log('Character is jumping on enemy');
             } else if(this.character.isColliding(enemy)) {
              this.character.hit();
              this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);

@@ -25,20 +25,18 @@ class MovableObject extends DrawableObject {
 
     isColliding(mo) {
         return (
-            (this.x + this.width + this.offsetWidth) >= mo.x &&
-            this.x <= (mo.x + mo.width + mo.offsetWidth) &&
-            (this.y + this.offsetY + this.height + this.offsetHeight) >= mo.y &&
-            (this.y + this.offsetY) <= (mo.y + mo.height + mo.offsetHeight)
+            ((this.x - this.offsetX) + (this.width - this.offsetWidth)) >= (mo.x - mo.offsetX)  &&
+            (this.x - this.offsetX) <= ((mo.x - mo.offsetX) + (mo.width - mo.offsetWidth)) &&
+            ((this.y - this.offsetY) + (this.height - this.offsetHeight)) >= (mo.y - mo.offsetY) &&
+            (this.y - this.offsetY) <= ((mo.y - mo.offsetY) + (mo.height - mo.offsetHeight))
         );
     }
 
     isJumpingOn(mo) {
-        return (
-            this.y - this.offsetY + this.height > mo.y &&
-            this.y - this.offsetY + this.height < mo.y + mo.height &&
-            this.x + this.width > mo.x &&
-            this.x < mo.x + mo.width
-        );
+        if (!this.isColliding(mo)) {
+            return false;
+        }
+        return (this.y - this.offsetY + this.height) >= (mo.y - mo.offsetY);
     }
 
     hit() {
