@@ -3,7 +3,6 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-    energy = 100;
     lastHit = 0;
 
     applyGravity() {
@@ -34,7 +33,7 @@ class MovableObject extends DrawableObject {
     }
 
     isJumpingOn(mo) {
-        if (!this.isColliding(mo)) {
+        if (!this.isColliding(mo) || this instanceof Endboss) {
             return false;
         }
         return (this.y - this.offsetY + this.height) >= (mo.y - mo.offsetY);
@@ -48,6 +47,7 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
+
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;

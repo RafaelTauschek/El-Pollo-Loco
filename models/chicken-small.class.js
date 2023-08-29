@@ -7,6 +7,7 @@ class ChickenSmall extends MovableObject {
     offsetX = 0;
     offsetWidth = 0;
     offsetHeight = 10;
+    energy = 1;
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
         'img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
@@ -37,5 +38,7 @@ class ChickenSmall extends MovableObject {
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
         }, 150);
+
+
     }
 }

@@ -29,21 +29,24 @@ class World  {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-            this.checkCollecting();
+            this.checkCollecting(this.level.coins);
+            this.checkCollecting(this.level.bottles);
         }, 200);
     }
 
-    checkThrowObjects () {
-        if (this.keyboard.THROW) {
+    checkThrowObjects() {
+        if (this.keyboard.THROW && this.character.collectedBottles > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
+            this.character.collectedBottles--;
         }
     }
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpingOn(enemy) && this.character.isAboveGround()) {
-                console.log('Character is jumping on enemy');
+                enemy.hit();
+                console.log(enemy);
             } else if(this.character.isColliding(enemy)) {
              this.character.hit();
              this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);
@@ -51,16 +54,16 @@ class World  {
          });
     }
 
-
-    checkCollecting() {
-        this.level.coins.forEach((coin, index) => {
-            if (this.character.isColliding(coin)) {
-                this.level.coins.splice(index, 1);
-            }
-        });
-        this.level.bottles.forEach((bottle, index) => {
-            if (this.character.isColliding(bottle)) {
-                this.level.bottles.splice(index, 1);
+    checkCollecting(items) {
+        items.forEach((item, index) => {
+            if (this.character.isColliding(item)) {
+                if (item instanceof Coin) {
+                    this.character.collectedCoins++;
+                }
+                if (item instanceof Bottle) {
+                    this.character.collectedBottles++;
+                }
+                items.splice(index, 1);
             }
         });
     }
