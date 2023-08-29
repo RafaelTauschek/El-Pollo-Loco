@@ -12,6 +12,7 @@ class World  {
     camera_x = 0;
 
 
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -31,6 +32,7 @@ class World  {
             this.checkThrowObjects();
             this.checkCollecting(this.level.coins);
             this.checkCollecting(this.level.bottles);
+            this.checkThrowableImpact();
         }, 200);
     }
 
@@ -43,10 +45,13 @@ class World  {
     }
 
     checkCollisions() {
-        this.level.enemies.forEach((enemy) => {
+        this.level.enemies.forEach((enemy, index) => {
             if (this.character.isJumpingOn(enemy) && this.character.isAboveGround()) {
                 enemy.hit();
-                console.log(enemy);
+                setTimeout(() => {
+                    this.level.enemies.splice(index, 1);
+                }, 1000);
+                
             } else if(this.character.isColliding(enemy)) {
              this.character.hit();
              this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);
