@@ -23,6 +23,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
     isColliding(mo) {
         return (
             ((this.x - this.offsetX) + (this.width - this.offsetWidth)) >= (mo.x - mo.offsetX)  &&
@@ -33,7 +34,7 @@ class MovableObject extends DrawableObject {
     }
 
     isJumpingOn(mo) {
-        if (!this.isColliding(mo) || this instanceof Endboss) {
+        if (!this.isColliding(mo)) {
             return false;
         }
         return (this.y - this.offsetY + this.height) >= (mo.y - mo.offsetY);

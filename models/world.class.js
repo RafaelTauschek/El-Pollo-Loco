@@ -32,9 +32,9 @@ class World  {
             this.checkThrowObjects();
             this.checkCollecting(this.level.coins);
             this.checkCollecting(this.level.bottles);
-            this.checkThrowableImpact();
         }, 200);
     }
+
 
     checkThrowObjects() {
         if (this.keyboard.THROW && this.character.collectedBottles > 0) {
@@ -44,14 +44,14 @@ class World  {
         }
     }
 
+
     checkCollisions() {
         this.level.enemies.forEach((enemy, index) => {
-            if (this.character.isJumpingOn(enemy) && this.character.isAboveGround()) {
+            if (this.character.isJumpingOn(enemy) && this.character.isAboveGround() && !(enemy instanceof Endboss)) {
                 enemy.hit();
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
                 }, 1000);
-                
             } else if(this.character.isColliding(enemy)) {
              this.character.hit();
              this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);
