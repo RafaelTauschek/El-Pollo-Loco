@@ -10,7 +10,8 @@ class CoinBar extends StatusBar {
     ];
 
     percentage = 0;
-
+    collectedCoins = 0;
+    
 
     constructor() {
         super().loadImages(this.IMAGES);

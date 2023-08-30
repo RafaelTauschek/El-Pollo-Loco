@@ -10,6 +10,7 @@ class BottleBar extends StatusBar {
     ];
 
     percentage = 0;
+    collectedBottles = 0;
 
     constructor() {
         super().loadImages(this.IMAGES);

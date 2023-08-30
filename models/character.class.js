@@ -11,8 +11,6 @@ class Character extends MovableObject {
     idleTimer = 0;
     idleThreshold = 5000;
     energy = 100;
-    collectedCoins = 0;
-    collectedBottles = 0;
 
 
     IMAGES_IDLING = [

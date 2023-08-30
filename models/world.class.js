@@ -10,6 +10,8 @@ class World  {
     ctx;
     keyboard;
     camera_x = 0;
+    maxCoins = this.level.coins.length;
+    maxBottles = this.level.bottles.length;
 
 
 
@@ -37,10 +39,12 @@ class World  {
 
 
     checkThrowObjects() {
-        if (this.keyboard.THROW && this.character.collectedBottles > 0) {
+        if (this.keyboard.THROW && this.bottleBar.collectedBottles > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
-            this.character.collectedBottles--;
+            this.bottleBar.collectedBottles--;
+            let count = this.bottleBar.collectedBottles / this.maxBottles * 100;
+            this.bottleBar.setPercentage(count, this.bottleBar.IMAGES);
         }
     }
 
@@ -63,23 +67,24 @@ class World  {
         items.forEach((item, index) => {
             if (this.character.isColliding(item)) {
                 if (item instanceof Coin) {
-                    this.character.collectedCoins++;
+                    this.coinBar.collectedCoins++;
+                    let count = this.coinBar.collectedCoins / this.maxCoins * 100;
+                    this.coinBar.setPercentage(count, this.coinBar.IMAGES);
                 }
                 if (item instanceof Bottle) {
-                    this.character.collectedBottles++;
+                    this.bottleBar.collectedBottles++;
+                    let count = this.bottleBar.collectedBottles / this.maxBottles * 100;
+                    this.bottleBar.setPercentage(count, this.bottleBar.IMAGES);
                 }
                 items.splice(index, 1);
             }
         });
     }
 
-    
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_x, 0);
@@ -88,14 +93,11 @@ class World  {
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.ctx.translate(this.camera_x, 0);
-
-
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObject);
-        
         this.ctx.translate(-this.camera_x, 0);
         // Draw() wird immer wieder aufgerufen
         let self = this;
