@@ -3,10 +3,7 @@ TO DO:
 => Start Screen
 => Music + Sounds (+ disable/enabling)
 => Backgroundimage
-=> StatusBars
-=> Only Throw Bottle if aviable
 => Collision (jumping on chicken and bottle impact)
-=> Small Chicken
 => Final Boss
 => Game-Over screen
 => Fullscreen

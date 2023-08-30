@@ -43,6 +43,7 @@ class ThrowableObject extends MovableObject {
         this.applyGravity();
         this.animate();
         setInterval(() => {
+
             this.x += 10;
         }, 25);
     }

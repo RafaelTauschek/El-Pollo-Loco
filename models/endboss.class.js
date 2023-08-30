@@ -52,13 +52,23 @@ class Endboss extends MovableObject {
     constructor() {
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_ALERT);
+        this.loadImages(this.IMAGES_WALK);
         this.x = 2200;
+        this.speed = 0.15;
         this.animate();
     }
 
     animate() {
+        let i = 0;
         setInterval(() => {
-            this.playAnimation(this.IMAGES_ALERT);
-        }, 200);
+            
+            if (i < 8) {
+                this.playAnimation(this.IMAGES_ALERT);
+            } else {
+                this.playAnimation(this.IMAGES_WALK);
+                this.moveLeft();
+            }
+            i++    
+        }, 150);
     }
 }
