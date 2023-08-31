@@ -4,7 +4,7 @@ class World  {
     healthBar = new HealthBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
-    throwableObject = [new ThrowableObject];
+    throwableObject = [];
     level = level1;
     canvas;
     ctx;
@@ -12,6 +12,7 @@ class World  {
     camera_x = 0;
     maxCoins = this.level.coins.length;
     maxBottles = this.level.bottles.length;
+    
 
 
 
@@ -23,6 +24,7 @@ class World  {
         this.setWorld();
         this.run();
     }
+
 
     setWorld() {
         this.character.world = this;
@@ -52,8 +54,12 @@ class World  {
     checkBottleCollision() {
         this.level.enemies.forEach((enemy) => {
             this.throwableObject.forEach((bottle) => {
-                if (enemy.isColliding(bottle)) {
-                    // DO something
+                if (enemy.isColliding(bottle) &&  !bottle.impact) {
+                    bottle.impact = true;
+                    enemy.energy -= 10;
+                    if (enemy instanceof Endboss) {
+                        enemy.playAnimation(enemy.IMAGES_HURT);
+                    }
                 }
             })
         }) 

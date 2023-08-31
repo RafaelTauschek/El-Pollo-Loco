@@ -36,8 +36,11 @@ class ThrowableObject extends MovableObject {
 
     animate() {
         setInterval(() => {
-            
-            this.playAnimation(this.IMAGES_THROW);
+            if (this.impact == true) {
+                this.playAnimation(this.IMAGES_IMPACT);
+            } else {
+                this.playAnimation(this.IMAGES_THROW);
+            }
         }, 50)
     }
  
@@ -46,8 +49,7 @@ class ThrowableObject extends MovableObject {
         this.applyGravity();
         this.animate();
         setInterval(() => {
-
-            this.x += 10;
+        this.x += 10;
         }, 25);
     }
 } 

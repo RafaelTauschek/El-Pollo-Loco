@@ -11,7 +11,7 @@ class Character extends MovableObject {
     idleTimer = 0;
     idleThreshold = 5000;
     energy = 100;
-    isFalling = false;
+    falling = false;
 
 
     IMAGES_IDLING = [

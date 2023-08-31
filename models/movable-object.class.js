@@ -14,9 +14,8 @@ class MovableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
-
     isAboveGround() {
-        if (this instanceof ThrowableObject) { // Throwable object should always fall
+        if (this instanceof ThrowableObject) {
             return true;
         } else {
             return this.y < 120;
@@ -48,6 +47,7 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
+
 
 
     isHurt() {

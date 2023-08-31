@@ -8,6 +8,7 @@ class Endboss extends MovableObject {
     offsetWidth = 30;
     offsetHeight = 100;
     energy = 30;
+    firstContact = false;
 
 
     IMAGES_WALK = [
@@ -66,17 +67,13 @@ class Endboss extends MovableObject {
     animate() {
         let i = 0;
         setInterval(() => {
-            if (this.hit()) {
-                this.playAnimation(this.IMAGES_HURT);
-            }
-
-            if (this.isDead()) {
+            if (this.energy <= 0) {
                 this.playAnimation(this.IMAGES_DEAD);
             }
-            
+           
             if (i < 8 && this.energy > 0) {
                 this.playAnimation(this.IMAGES_ALERT);
-            } 
+            }
 
             if (i > 8 & this.energy > 0) {
                 this.playAnimation(this.IMAGES_WALK);
