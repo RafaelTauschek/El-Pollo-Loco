@@ -34,8 +34,7 @@ class World  {
             this.checkThrowObjects();
             this.checkCollecting(this.level.coins);
             this.checkCollecting(this.level.bottles);
-            this.checkBottleCollision(this instanceof ThrowableObject);
-            this.checkBottleCollision(this.throwableObject);
+            this.checkBottleCollision();
         }, 200);
     }
 
@@ -50,15 +49,13 @@ class World  {
         }
     }
 
-    checkBottleCollision(obj) {
+    checkBottleCollision() {
         this.level.enemies.forEach((enemy) => {
-            if (enemy.isColliding(this.throwableObject)) {
-                console.log('is colliding 1');
-            } else if (this.throwableObject instanceof ThrowableObject && enemy.isColliding(this.throwableObject)) {
-                console.log('is colliding 2');
-            } else if (enemy.isColliding(obj)) {
-                console.log('is colliding 3');
-            }
+            this.throwableObject.forEach((bottle) => {
+                if (enemy.isColliding(bottle)) {
+                    enemy.hit();
+                }
+            })
         }) 
     }
 
