@@ -1,8 +1,26 @@
+
+
+@font-face {
+    font-family: tequilla;
+    src: url('./fonts/LaTequilaOut.ttf');
+}
+
 body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    background-image: url('./img/background.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+h1 {
+    font-family: tequilla;
+    font-size: 50px;
 }
 
 canvas {

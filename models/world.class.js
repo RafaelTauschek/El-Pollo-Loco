@@ -53,7 +53,7 @@ class World  {
         this.level.enemies.forEach((enemy) => {
             this.throwableObject.forEach((bottle) => {
                 if (enemy.isColliding(bottle)) {
-                    enemy.hit();
+                    // DO something
                 }
             })
         }) 
