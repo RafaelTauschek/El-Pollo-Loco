@@ -26,3 +26,16 @@ h1 {
 canvas {
     background-color: black;
 }
+
+
+@media (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+@media(max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+}

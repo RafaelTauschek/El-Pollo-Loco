@@ -37,7 +37,18 @@ class World  {
             this.checkCollecting(this.level.coins);
             this.checkCollecting(this.level.bottles);
             this.checkBottleCollision();
-        }, 200);
+            this.checkFalling();
+        }, 150);
+    }
+
+    checkFalling() {
+        setInterval( () => {
+            if (this.character.speedY == 0) {
+                this.character.falling = true;
+            } else if (this.character.speedY == -32.5) {
+                this.character.falling = false;
+            }
+        }, 50)
     }
 
 
@@ -56,7 +67,7 @@ class World  {
             this.throwableObject.forEach((bottle) => {
                 if (enemy.isColliding(bottle) &&  !bottle.impact) {
                     bottle.impact = true;
-                    enemy.energy -= 10;
+                    enemy.hit();
                     if (enemy instanceof Endboss) {
                         enemy.playAnimation(enemy.IMAGES_HURT);
                     }
@@ -68,7 +79,7 @@ class World  {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy, index) => {
-            if (this.character.isJumpingOn(enemy) && this.character.isAboveGround() && !(enemy instanceof Endboss)) {
+            if (this.character.isJumpingOn(enemy) && this.character.falling && !(enemy instanceof Endboss)) {
                 enemy.hit();
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
