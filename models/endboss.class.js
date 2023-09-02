@@ -71,11 +71,11 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
             }
            
-            if (i < 8 && this.energy > 0) {
+            if (i < 8) {
                 this.playAnimation(this.IMAGES_ALERT);
             }
 
-            if (i > 8 & this.energy > 0) {
+            if (this.firstContact()) {
                 this.playAnimation(this.IMAGES_WALK);
                 this.moveLeft();
             }

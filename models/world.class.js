@@ -12,7 +12,7 @@ class World  {
     camera_x = 0;
     maxCoins = this.level.coins.length;
     maxBottles = this.level.bottles.length;
-    
+    firstContact = false;
 
 
 
@@ -38,7 +38,14 @@ class World  {
             this.checkCollecting(this.level.bottles);
             this.checkBottleCollision();
             this.checkFalling();
+            this.checkFirstContact();
         }, 150);
+    }
+
+    checkFirstContact() {
+        if (this.character.x > 1600) {
+          
+        }
     }
 
     checkFalling() {
@@ -48,7 +55,7 @@ class World  {
             } else if (this.character.speedY == -32.5) {
                 this.character.falling = false;
             }
-        }, 50)
+        }, 1000 / 60)
     }
 
 
@@ -81,10 +88,11 @@ class World  {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isJumpingOn(enemy) && this.character.falling && !(enemy instanceof Endboss)) {
                 enemy.hit();
+                this.character.jump();
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
                 }, 1000);
-            } else if(this.character.isColliding(enemy)) {
+            } else if(this.character.isColliding(enemy) && !this.character.falling && enemy.energy > 0) {
              this.character.hit();
              this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);
             }
