@@ -27,24 +27,39 @@ canvas {
     background-color: black;
 }
 
-.hud-button {
-    border-radius: 50%;
-}
-
-.hud-img {
-    height: 50px;
-    width: 50px;
+#start-screen {
+    position: relative;
+    margin-top: -480px;
+    width: 720px;
+    height: 480px;
+    background-image: url('img/9_intro_outro_screens/start/startscreen_1.png');
+    background-size: contain;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
 @media (max-width: 720px) {
-    canvas {
+    canvas,
+    #start-screen {
         width: 100%;
+    }
+    h1 {
+        display: none;
     }
 }
 
 @media(max-height: 480px) {
-    canvas {
+    canvas,
+    #start-screen {
         height: 100vh;
+    }
+    h1 {
+        display: none;
     }
 }

@@ -13,7 +13,7 @@ JUMPING_SOUND = new Audio ('audio/jump.mp3');
 THROW_SOUND = new Audio ('audio/throw.mp3');
 WALKING_SOUND = new Audio ('audio/walking.mp3');
 SMASH_SOUND = new Audio ('audio/bottle_smash.mp3');
-
+LOST_SOUND = new Audio('audio/lost.mp3');
 sound = false;
 
 
