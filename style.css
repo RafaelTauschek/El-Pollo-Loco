@@ -5,6 +5,12 @@
     src: url('./fonts/LaTequilaOut.ttf');
 }
 
+
+@font-face {
+    font-family: zabras;
+    src: url('fonts/Zabars.ttf');
+}
+
 body {
     margin: 0;
     display: flex;
@@ -19,7 +25,7 @@ body {
 }
 
 h1 {
-    font-family: tequilla;
+    font-family: tequilla, Arial, Helvetica, sans-serif;
     font-size: 50px;
 }
 
@@ -39,14 +45,29 @@ canvas {
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: flex-end;
 }
 
 .display-none {
     display: none !important;
 }
 
+button {
+    width: 160px;
+    height: 51px;
+    font-size: 24px;
+    font-size: zabras, Arial, Helvetica, sans-serif;
+    border-radius: 20px;
+    background-color: rgb(216, 155, 42);
+    border: 1px solid lightgray;
+}
+
+.hud {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
 
 @media (max-width: 720px) {
     canvas,

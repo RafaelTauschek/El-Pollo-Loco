@@ -14,6 +14,7 @@ class World {
     maxBottles = this.level.bottles.length;
     firstContactOccurred = false;
     firstIntroSond = false;
+    isThrowing = false;
 
 
 
@@ -34,7 +35,7 @@ class World {
     }
 
     run() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkCollecting(this.level.coins);
@@ -44,7 +45,7 @@ class World {
             this.checkFirstContact();
             this.checkPlayerNearby();
             this.checkThemeMusic();
-        }, 150);
+        }, 1000 / 60);
     }
 
 
@@ -92,13 +93,17 @@ class World {
 
 
     checkThrowObjects() {
-        if (this.keyboard.THROW && this.bottleBar.collectedBottles > 0) {
+        if (this.keyboard.THROW && this.bottleBar.collectedBottles > 0 && !this.isThrowing) {
+            this.isThrowing = true;
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
             this.bottleBar.collectedBottles--;
             this.sounds.soundPlay(this.sounds.THROW_SOUND, 1)
             let count = this.bottleBar.collectedBottles / this.maxBottles * 100;
             this.bottleBar.setPercentage(count, this.bottleBar.IMAGES);
+            setTimeout(() => {
+                this.isThrowing = false;
+            }, 100);
         }
     }
 
@@ -121,12 +126,14 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy, index) => {
-            if (this.character.isJumpingOn(enemy) && this.character.falling && !(enemy instanceof Endboss) && enemy.energy > 0) {
-                enemy.hit();
+            if (this.character.isJumpingOn(enemy) && this.character.falling && enemy.energy > 0) {
+                if (!(enemy instanceof Endboss)) {
+                    enemy.hit();
                 this.sounds.soundPlay(this.sounds.CHICKEN_SOUND, 0.5);
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
                 }, 1000);
+                }
             } else if (this.character.isColliding(enemy) && !this.character.falling && enemy.energy > 0) {
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);
@@ -152,6 +159,14 @@ class World {
                 items.splice(index, 1);
             }
         });
+    }
+
+    checkInstanceEndboss(mo) {
+        if (mo instanceof Endboss) {
+          return true;  
+        } else {
+            return false;
+        }
     }
 
     draw() {

@@ -38,6 +38,6 @@ class ChickenSmall extends MovableObject {
                 this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
             } 
-        }, 1000 / 60);
+        }, 150);
     }
 }

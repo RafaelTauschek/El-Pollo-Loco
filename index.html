@@ -29,13 +29,17 @@
     <title>El pollo loco</title>
 </head>
 <body onload="init()">
-    <h1>El pollo loco</h1>
+    <h1>El Pollo Loco</h1>
 
     <canvas id="canvas" width="720" height="480"></canvas>
     <div id="start-screen">
-
-        <button onclick="startGame()">Start game</button>
+        <div class="hud">        
+            <button>Info</button>
+            <button>Settings</button>
+            <button onclick="startGame()">Start game</button>
+        </div>
     </div>
 
+    <div id="end-screen"></div>
 </body>
 </html>

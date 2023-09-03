@@ -21,7 +21,16 @@ let level1 = new Level(
         new Endboss()
     ],
     [
-        new Cloud(),
+        new Cloud(100),
+        new Cloud(700),
+        new Cloud(1200),
+        new Cloud(1800),
+        new Cloud(2400),
+        new Cloud(3000),
+        new Cloud(3600),
+        new Cloud(4200),
+        new Cloud(4800),
+        new Cloud(5200),
     ],
     [
         new BackgroundObject('img/5_background/layers/air.png', - 719),

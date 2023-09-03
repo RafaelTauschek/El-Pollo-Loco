@@ -12,6 +12,10 @@ function startGame() {
     world = new World(canvas, keyboard);
 }
 
+function endGame() {
+
+}
+
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
     intervalIds.push(id);
@@ -45,6 +49,7 @@ window.addEventListener('keydown', (e) => {
         keyboard.NOKEY = false;
     }
 });
+
 
 
 window.addEventListener('keyup', (e) => {
