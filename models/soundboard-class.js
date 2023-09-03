@@ -1,9 +1,5 @@
 class Soundboard {
 
-
-
-
-
 BACKGROUND_SOUND = new Audio('audio/background.mp3');
 ENDBOSS_BACKGROUND_SOUND = new Audio('audio/endboss-background.mp3');
 ENDBOSS_INTRO_SOUND = new Audio('audio/boss.intro.mp3');
@@ -18,6 +14,18 @@ THROW_SOUND = new Audio ('audio/throw.mp3');
 WALKING_SOUND = new Audio ('audio/walking.mp3');
 SMASH_SOUND = new Audio ('audio/bottle_smash.mp3');
 
+sound = true;
+
+
+soundPlay(audio) {
+    if (sound) {
+        audio.play();   
+    }
+}
+
+soundStop(audio) {
+    audio.pause();
+}
 
 
 

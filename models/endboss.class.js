@@ -59,7 +59,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 2200;
-        this.speed = 0.5;
+        this.speed = 8;
         this.animate();
     }
 
@@ -69,23 +69,29 @@ class Endboss extends MovableObject {
     animate() {
         let i = 0;
 
+        
+        setInterval(() => {
+            
+            if (i < 10) {
+                this.playAnimation(this.IMAGES_ALERT)
+            } else {
+                this.playAnimation(this.IMAGES_WALK);
+                this.moveLeft();
+            }
+
+            i++;
+
+            if (this.firstContact) {
+                i = 0;
+                this.firstContact = false;
+            }
+
+        }, 150);
+
         setInterval(() => {
             if (this.energy <= 0) {
                 this.playAnimation(this.IMAGES_DEAD);
             }
         }, 500);
-
-
-        setInterval(() => {
-            if (i < 8 && this.energy > 0) {
-                this.playAnimation(this.IMAGES_ALERT);
-            }
-            // Check if the character had first contact
-            if (i > 8 && this.energy > 0) {
-                this.playAnimation(this.IMAGES_WALK);
-                this.moveLeft();
-            }
-            i++
-        }, 150);
     }
 }

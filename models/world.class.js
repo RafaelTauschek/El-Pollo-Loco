@@ -12,6 +12,7 @@ class World {
     camera_x = 0;
     maxCoins = this.level.coins.length;
     maxBottles = this.level.bottles.length;
+    firstContactOccurred = false;
 
 
 
@@ -42,8 +43,13 @@ class World {
     }
 
     checkFirstContact() {
-        if (this.character.x > 1600) {
-        
+        if (!this.firstContactOccurred && this.character.x > 1600) {
+           this.level.enemies.forEach((enemy) => {
+            if (enemy instanceof Endboss) {
+                enemy.firstContact = true;
+                this.firstContactOccurred = true;
+            }
+           })
         }
     }
 
