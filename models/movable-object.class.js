@@ -32,11 +32,12 @@ class MovableObject extends DrawableObject {
         );
     }
 
+
     isJumpingOn(mo) {
         if (!this.isColliding(mo)) {
             return false;
         }
-        return (this.y - this.offsetY + this.height) >= (mo.y - mo.offsetY);
+        return ((this.y - this.offsetY) + (this.height -this.offsetHeight)) >= (mo.y - mo.offsetY);
     }
 
     hit() {

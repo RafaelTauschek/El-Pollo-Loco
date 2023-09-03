@@ -43,6 +43,10 @@ canvas {
     align-items: center;
 }
 
+.display-none {
+    display: none !important;
+}
+
 
 @media (max-width: 720px) {
     canvas,

@@ -22,8 +22,8 @@ class Chicken extends MovableObject {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DYING);
-        this.x = 200 + Math.random() * 500;
-        this.speed = 0.15 + Math.random() * 0.50;
+        this.x = 300 + (Math.random() * 5000);
+        this.speed = 0.8 + Math.random() * 1;
         this.animate();
     }
 
@@ -38,6 +38,6 @@ class Chicken extends MovableObject {
                 this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
             } 
-        }, 1000 / 60)
+        }, 150)
     }
 }

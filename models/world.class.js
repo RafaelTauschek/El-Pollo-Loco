@@ -70,7 +70,7 @@ class World {
     }
 
     checkFirstContact() {
-        if (!this.firstContactOccurred && this.character.x > 1600) {
+        if (!this.firstContactOccurred && this.character.x > 4450) {
             this.level.enemies.forEach((enemy) => {
                 if (enemy instanceof Endboss) {
                     enemy.firstContact = true;
@@ -82,7 +82,7 @@ class World {
 
     checkFalling() {
         setInterval(() => {
-            if (this.character.speedY == 0) {
+            if (this.character.speedY == 2.5) {
                 this.character.falling = true;
             } else if (this.character.speedY == -32.5) {
                 this.character.falling = false;
@@ -124,7 +124,6 @@ class World {
             if (this.character.isJumpingOn(enemy) && this.character.falling && !(enemy instanceof Endboss) && enemy.energy > 0) {
                 enemy.hit();
                 this.sounds.soundPlay(this.sounds.CHICKEN_SOUND, 0.5);
-                this.character.jump();
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
                 }, 1000);

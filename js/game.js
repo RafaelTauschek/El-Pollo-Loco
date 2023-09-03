@@ -4,7 +4,11 @@ let keyboard = new Keyboard();
 intervalIds = [];
 
 function init() {
-    canvas = document.getElementById('canvas');
+    canvas = document.getElementById('canvas'); 
+}
+
+function startGame() {
+    document.getElementById('start-screen').classList.add('display-none');
     world = new World(canvas, keyboard);
 }
 
