@@ -7,9 +7,8 @@ class Endboss extends MovableObject {
     offsetX = -20;
     offsetWidth = 30;
     offsetHeight = 100;
-    energy = 30;
+    energy = 20;
     firstContact = false;
-
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -60,26 +59,33 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 2200;
-        this.speed = 0.15;
+        this.speed = 0.5;
         this.animate();
     }
 
+
+
+
     animate() {
         let i = 0;
+
         setInterval(() => {
             if (this.energy <= 0) {
                 this.playAnimation(this.IMAGES_DEAD);
             }
-           
-            if (i < 8) {
+        }, 500);
+
+
+        setInterval(() => {
+            if (i < 8 && this.energy > 0) {
                 this.playAnimation(this.IMAGES_ALERT);
             }
-
-            if (this.firstContact()) {
+            // Check if the character had first contact
+            if (i > 8 && this.energy > 0) {
                 this.playAnimation(this.IMAGES_WALK);
                 this.moveLeft();
             }
-            i++    
+            i++
         }, 150);
     }
 }

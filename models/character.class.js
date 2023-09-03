@@ -105,16 +105,19 @@ class Character extends MovableObject {
                 this.moveRight();
                 this.otherDirection = false;
                 this.walking_sound.play();
+                this.idleTimer = 0;
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
                 this.walking_sound.play();
+                this.idleTimer = 0;
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump(this.Character);
+                this.idleTimer = 0;
             }
 
             this.world.camera_x = -this.x + 100;

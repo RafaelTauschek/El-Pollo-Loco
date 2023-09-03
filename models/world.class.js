@@ -1,5 +1,5 @@
-class World  {
-
+class World {
+    sounds = new Soundboard();
     character = new Character();
     healthBar = new HealthBar();
     coinBar = new CoinBar();
@@ -12,7 +12,6 @@ class World  {
     camera_x = 0;
     maxCoins = this.level.coins.length;
     maxBottles = this.level.bottles.length;
-    firstContact = false;
 
 
 
@@ -44,12 +43,12 @@ class World  {
 
     checkFirstContact() {
         if (this.character.x > 1600) {
-          
+        
         }
     }
 
     checkFalling() {
-        setInterval( () => {
+        setInterval(() => {
             if (this.character.speedY == 0) {
                 this.character.falling = true;
             } else if (this.character.speedY == -32.5) {
@@ -72,7 +71,7 @@ class World  {
     checkBottleCollision() {
         this.level.enemies.forEach((enemy) => {
             this.throwableObject.forEach((bottle) => {
-                if (enemy.isColliding(bottle) &&  !bottle.impact) {
+                if (enemy.isColliding(bottle) && !bottle.impact) {
                     bottle.impact = true;
                     enemy.hit();
                     if (enemy instanceof Endboss) {
@@ -80,23 +79,23 @@ class World  {
                     }
                 }
             })
-        }) 
+        })
     }
 
 
     checkCollisions() {
         this.level.enemies.forEach((enemy, index) => {
-            if (this.character.isJumpingOn(enemy) && this.character.falling && !(enemy instanceof Endboss)) {
+            if (this.character.isJumpingOn(enemy) && this.character.falling && !(enemy instanceof Endboss) && enemy.energy > 0) {
                 enemy.hit();
                 this.character.jump();
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
                 }, 1000);
-            } else if(this.character.isColliding(enemy) && !this.character.falling && enemy.energy > 0) {
-             this.character.hit();
-             this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);
+            } else if (this.character.isColliding(enemy) && !this.character.falling && enemy.energy > 0) {
+                this.character.hit();
+                this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);
             }
-         });
+        });
     }
 
     checkCollecting(items) {
@@ -136,7 +135,7 @@ class World  {
         this.ctx.translate(-this.camera_x, 0);
         // Draw() wird immer wieder aufgerufen
         let self = this;
-        requestAnimationFrame(function() {
+        requestAnimationFrame(function () {
             self.draw();
         });
     }

@@ -1,10 +1,16 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+intervalIds = [];
 
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+}
+
+function setStoppableInterval(fn, time) {
+    let id = setInterval(fn, time);
+    intervalIds.push(id);
 }
 
 
