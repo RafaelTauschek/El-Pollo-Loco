@@ -13,6 +13,7 @@ class World {
     maxCoins = this.level.coins.length;
     maxBottles = this.level.bottles.length;
     firstContactOccurred = false;
+    firstIntroSond = false;
 
 
 
@@ -23,11 +24,13 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.sounds.playBackgroundSound();
     }
 
 
     setWorld() {
         this.character.world = this;
+
     }
 
     run() {
@@ -40,10 +43,18 @@ class World {
             this.checkFalling();
             this.checkFirstContact();
             this.checkPlayerNearby();
+            this.checkThemeMusic();
         }, 150);
     }
 
 
+    checkThemeMusic() {
+        if (this.firstContactOccurred && !this.firstIntroSond) {
+            this.sounds.soundStop(this.sounds.BACKGROUND_SOUND);
+            this.sounds.playEndbossTheme();
+            this.firstIntroSond = true;
+        }
+    }
 
     checkPlayerNearby() {
         this.level.enemies.forEach((enemy) => {
@@ -55,17 +66,17 @@ class World {
                     enemy.playerNearby = false;
                 }
             }
-        }) 
+        })
     }
 
     checkFirstContact() {
         if (!this.firstContactOccurred && this.character.x > 1600) {
-           this.level.enemies.forEach((enemy) => {
-            if (enemy instanceof Endboss) {
-                enemy.firstContact = true;
-                this.firstContactOccurred = true;
-            }
-           })
+            this.level.enemies.forEach((enemy) => {
+                if (enemy instanceof Endboss) {
+                    enemy.firstContact = true;
+                    this.firstContactOccurred = true;
+                }
+            })
         }
     }
 
@@ -85,6 +96,7 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
             this.bottleBar.collectedBottles--;
+            this.sounds.soundPlay(this.sounds.THROW_SOUND, 1)
             let count = this.bottleBar.collectedBottles / this.maxBottles * 100;
             this.bottleBar.setPercentage(count, this.bottleBar.IMAGES);
         }
@@ -94,10 +106,12 @@ class World {
         this.level.enemies.forEach((enemy) => {
             this.throwableObject.forEach((bottle) => {
                 if (enemy.isColliding(bottle) && !bottle.impact) {
+                    this.sounds.soundPlay(this.sounds.SMASH_SOUND, 0.5);
                     bottle.impact = true;
                     enemy.hit();
                     if (enemy instanceof Endboss) {
                         enemy.playAnimation(enemy.IMAGES_HURT);
+                        this.sounds.soundPlay(this.sounds.CHICKEN_SOUND, 0.3)
                     }
                 }
             })
@@ -109,6 +123,7 @@ class World {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isJumpingOn(enemy) && this.character.falling && !(enemy instanceof Endboss) && enemy.energy > 0) {
                 enemy.hit();
+                this.sounds.soundPlay(this.sounds.CHICKEN_SOUND, 0.5);
                 this.character.jump();
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
@@ -125,11 +140,13 @@ class World {
             if (this.character.isColliding(item)) {
                 if (item instanceof Coin) {
                     this.coinBar.collectedCoins++;
+                    this.sounds.soundPlay(this.sounds.COIN_COLLECT_SOUND, 0.3);
                     let count = this.coinBar.collectedCoins / this.maxCoins * 100;
                     this.coinBar.setPercentage(count, this.coinBar.IMAGES);
                 }
                 if (item instanceof Bottle) {
                     this.bottleBar.collectedBottles++;
+                    this.sounds.soundPlay(this.sounds.BOTTLE_COLLECT_SOUND, 0.5);
                     let count = this.bottleBar.collectedBottles / this.maxBottles * 100;
                     this.bottleBar.setPercentage(count, this.bottleBar.IMAGES);
                 }

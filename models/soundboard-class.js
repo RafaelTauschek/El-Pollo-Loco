@@ -14,18 +14,49 @@ THROW_SOUND = new Audio ('audio/throw.mp3');
 WALKING_SOUND = new Audio ('audio/walking.mp3');
 SMASH_SOUND = new Audio ('audio/bottle_smash.mp3');
 
-sound = true;
+sound = false;
 
 
-soundPlay(audio) {
-    if (sound) {
-        audio.play();   
+soundPlay(audio, volume) {
+    if (this.sound) {
+        audio.volume = volume;
+        audio.play();  
     }
 }
 
 soundStop(audio) {
     audio.pause();
 }
+
+playBackgroundSound() {
+    if (this.sound) {
+        this.BACKGROUND_SOUND.volume = 0.3;
+        this.BACKGROUND_SOUND.loop = true;
+        this.BACKGROUND_SOUND.play();
+    }
+}
+
+playEndbossTheme() {
+    if (this.sound) {
+        this.ENDBOSS_INTRO_SOUND.volume = 0.3;
+        this.ENDBOSS_INTRO_SOUND.play();
+        setTimeout(() => {
+            this.ROOSTER_SOUND.play();
+        }, 1000);
+        setTimeout(() => {
+            this.ENDBOSS_INTRO_SOUND.pause();
+            this.ENDBOSS_BACKGROUND_SOUND.volume = 0.3;
+            this.ENDBOSS_BACKGROUND_SOUND.loop = true;
+            this.ENDBOSS_BACKGROUND_SOUND.play();
+        }, 9000);
+    }
+}
+
+
+
+
+
+
 
 
 

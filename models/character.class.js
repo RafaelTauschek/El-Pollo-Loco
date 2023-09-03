@@ -11,7 +11,7 @@ class Character extends MovableObject {
     idleTimer = 0;
     idleThreshold = 5000;
     energy = 100;
-    falling = false;
+    falling = true;
 
 
     IMAGES_IDLING = [
@@ -93,20 +93,24 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
+            this.world.sounds.soundStop(this.world.sounds.WALKING_SOUND);
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
+                this.world.sounds.soundPlay(this.world.sounds.WALKING_SOUND, 1);
                 this.otherDirection = false;
                 this.idleTimer = 0;
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
+                this.world.sounds.soundPlay(this.world.sounds.WALKING_SOUND, 1);
                 this.otherDirection = true;
                 this.idleTimer = 0;
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump(this.Character);
+                this.world.sounds.soundPlay(this.world.sounds.JUMPING_SOUND, 1);
                 this.idleTimer = 0;
             }
 
@@ -116,6 +120,7 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURTING);
+                this.world.sounds.soundPlay(this.world.sounds.HURT_SOUND, 0.3);
                 this.idleTimer = 0;
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DYING);
