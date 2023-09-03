@@ -9,6 +9,8 @@ class Endboss extends MovableObject {
     offsetHeight = 100;
     energy = 20;
     firstContact = false;
+    hadFirstContact = false;
+    playerNearby = false;
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -71,19 +73,23 @@ class Endboss extends MovableObject {
 
         
         setInterval(() => {
-            
             if (i < 10) {
                 this.playAnimation(this.IMAGES_ALERT)
-            } else {
+            }   
+            if (this.hadFirstContact && i > 10 && !this.playerNearby) {
                 this.playAnimation(this.IMAGES_WALK);
                 this.moveLeft();
             }
-
+            if (this.hadFirstContact && i > 10 && this.playerNearby) {
+                this.playAnimation(this.IMAGES_ATTACK);
+                this.moveLeft();   
+            }
             i++;
 
             if (this.firstContact) {
                 i = 0;
                 this.firstContact = false;
+                this.hadFirstContact = true;
             }
 
         }, 150);

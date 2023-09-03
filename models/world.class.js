@@ -39,7 +39,23 @@ class World {
             this.checkBottleCollision();
             this.checkFalling();
             this.checkFirstContact();
+            this.checkPlayerNearby();
         }, 150);
+    }
+
+
+
+    checkPlayerNearby() {
+        this.level.enemies.forEach((enemy) => {
+            if (enemy instanceof Endboss) {
+                let distance = enemy.x - this.character.x;
+                if (distance < 150) {
+                    enemy.playerNearby = true;
+                } else {
+                    enemy.playerNearby = false;
+                }
+            }
+        }) 
     }
 
     checkFirstContact() {
