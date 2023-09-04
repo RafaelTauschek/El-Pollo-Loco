@@ -9,11 +9,13 @@ function init() {
 
 function startGame() {
     document.getElementById('start-screen').classList.add('display-none');
+    setLevel();
     world = new World(canvas, keyboard);
 }
 
-function endGame() {
 
+function endGame() {
+    intervalIds.forEach(clearInterval);
 }
 
 function setStoppableInterval(fn, time) {

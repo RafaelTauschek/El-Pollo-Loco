@@ -92,7 +92,7 @@ class Character extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.world.sounds.soundStop(this.world.sounds.WALKING_SOUND);
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
@@ -117,7 +117,7 @@ class Character extends MovableObject {
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
 
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURTING);
                 this.world.sounds.soundPlay(this.world.sounds.HURT_SOUND, 0.3);

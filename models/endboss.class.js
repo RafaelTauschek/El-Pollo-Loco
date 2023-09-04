@@ -72,7 +72,7 @@ class Endboss extends MovableObject {
         let i = 0;
 
         
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (i < 10) {
                 this.playAnimation(this.IMAGES_ALERT)
             }   
@@ -94,7 +94,7 @@ class Endboss extends MovableObject {
 
         }, 150);
 
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (this.energy <= 0) {
                 this.playAnimation(this.IMAGES_DEAD);
             }

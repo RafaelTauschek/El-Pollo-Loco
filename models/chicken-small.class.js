@@ -31,7 +31,7 @@ class ChickenSmall extends MovableObject {
 
     animate() {
 
-        setInterval( () => {
+        setStoppableInterval( () => {
             if (this.energy <= 0) {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.energy > 0) {

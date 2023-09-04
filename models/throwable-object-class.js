@@ -35,7 +35,7 @@ class ThrowableObject extends MovableObject {
 
 
     animate() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (this.impact == true) {
                 this.playAnimation(this.IMAGES_IMPACT);
             } else {

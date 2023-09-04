@@ -44,18 +44,58 @@ class World {
             this.checkFalling();
             this.checkFirstContact();
             this.checkPlayerNearby();
-            this.checkThemeMusic();
+            this.checkBossMusic();
+            this.checkGameOver();
         }, 1000 / 60);
     }
 
+    checkGameOver() {
+        setStoppableInterval(() => {
+            if (this.checkIfLost()) {
+                console.log('You lost');
+                endGame();
+                this.sounds.stopAllSounds();
+                this.sounds.soundPlay(this.sounds.LOST_SOUND, 1);
+            } else if (this.checkIfWon()) {
+                console.log('You won');
+                endGame();
+                this.sounds.stopAllSounds();
+                this.sounds.soundPlay(this.sounds.WIN_SOUND, 1);
 
-    checkThemeMusic() {
-        if (this.firstContactOccurred && !this.firstIntroSond) {
-            this.sounds.soundStop(this.sounds.BACKGROUND_SOUND);
-            this.sounds.playEndbossTheme();
-            this.firstIntroSond = true;
+            }
+        }, 100)
+    }
+
+    checkIfLost() {
+        if (this.character.energy == 0) {
+            return true;
+        } else {
+            return false
         }
     }
+
+    checkIfWon() {
+        const endboss = this.level.enemies.find(enemy => enemy instanceof Endboss);
+        if (endboss && endboss.energy === 0) {
+            return true;
+        }
+    }
+
+
+    checkBossMusic() {
+        if (this.firstContactOccurred && !this.firstIntroSond) {
+            this.sounds.soundStop(this.sounds.BACKGROUND_SOUND);
+            this.sounds.playEndbossIntro();
+            this.firstIntroSond = true;
+            setTimeout(() => {
+                const endboss = this.level.enemies.find(enemy => enemy instanceof Endboss);
+                if (endboss && !endboss.energy === 0) {
+                    this.sounds.playEndbossTheme();
+                }
+            }, 9500);
+        }
+    }
+
 
     checkPlayerNearby() {
         this.level.enemies.forEach((enemy) => {
@@ -82,7 +122,7 @@ class World {
     }
 
     checkFalling() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (this.character.speedY == 2.5) {
                 this.character.falling = true;
             } else if (this.character.speedY == -32.5) {
@@ -129,10 +169,10 @@ class World {
             if (this.character.isJumpingOn(enemy) && this.character.falling && enemy.energy > 0) {
                 if (!(enemy instanceof Endboss)) {
                     enemy.hit();
-                this.sounds.soundPlay(this.sounds.CHICKEN_SOUND, 0.5);
-                setTimeout(() => {
-                    this.level.enemies.splice(index, 1);
-                }, 1000);
+                    this.sounds.soundPlay(this.sounds.CHICKEN_SOUND, 0.5);
+                    setTimeout(() => {
+                        this.level.enemies.splice(index, 1);
+                    }, 1000);
                 }
             } else if (this.character.isColliding(enemy) && !this.character.falling && enemy.energy > 0) {
                 this.character.hit();
@@ -163,7 +203,7 @@ class World {
 
     checkInstanceEndboss(mo) {
         if (mo instanceof Endboss) {
-          return true;  
+            return true;
         } else {
             return false;
         }
