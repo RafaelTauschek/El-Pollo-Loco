@@ -1,11 +1,32 @@
 TO DO:
 
-=> Start Screen
-=> Music + Sounds (+ disable/enabling)
-=> Backgroundimage
-=> Collision (jumping on chicken and bottle impact)
-=> Final Boss
-=> Game-Over screen
-=> Fullscreen
-=> Explanation (which key does what)
-=> Mobile Version
+Basic:
+
+-> Create UI/HUD
+-> Responsiveness / Mobile devices
+-> Losing and Winning Screen
+-> Mobile touchevents
+-> Fullscreen
+
+Gameplay:
+
+-> Enemy splicing doesn't work as intended
+-> Leveldesign (Coins, Bottles)
+
+Polishing:
+
+==> Character
+-> speed
+-> animation
+
+==> Chicken 
+-> speed
+-> animation
+
+==> ChickenSmall
+-> speed
+-> animation
+
+==> Endboss
+-> speed
+-> animation
