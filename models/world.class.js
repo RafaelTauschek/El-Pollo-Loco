@@ -111,7 +111,7 @@ class World {
     }
 
     checkFirstContact() {
-        if (!this.firstContactOccurred && this.character.x > 3400) {
+        if (!this.firstContactOccurred && this.character.x > 3300) {
             this.level.enemies.forEach((enemy) => {
                 if (enemy instanceof Endboss) {
                     enemy.firstContact = true;
@@ -152,7 +152,7 @@ class World {
             this.bottleBar.setPercentage(count, this.bottleBar.IMAGES);
             setTimeout(() => {
                 this.isThrowing = false;
-            }, 100);
+            }, 150);
         }
     }
 
@@ -183,7 +183,7 @@ class World {
                     this.sounds.soundPlay(this.sounds.CHICKEN_SOUND, 0.5);
                     setTimeout( () => {
                         this.level.enemies.splice(i, 1);
-                        index--;
+                        i--;
                     }, 1000) 
                 }
             } else if (this.character.isColliding(enemy) && !this.character.falling && enemy.energy > 0) {
@@ -199,13 +199,13 @@ class World {
             if (this.character.isColliding(item)) {
                 if (item instanceof Coin) {
                     this.coinBar.collectedCoins++;
-                    this.sounds.soundPlay(this.sounds.COIN_COLLECT_SOUND, 0.3);
+                    this.sounds.soundPlay(this.sounds.COIN_COLLECT_SOUND, 0.15);
                     let count = this.coinBar.collectedCoins / this.maxCoins * 100;
                     this.coinBar.setPercentage(count, this.coinBar.IMAGES);
                 }
                 if (item instanceof Bottle) {
                     this.bottleBar.collectedBottles++;
-                    this.sounds.soundPlay(this.sounds.BOTTLE_COLLECT_SOUND, 0.5);
+                    this.sounds.soundPlay(this.sounds.BOTTLE_COLLECT_SOUND, 0.3);
                     let count = this.bottleBar.collectedBottles / this.maxBottles * 100;
                     this.bottleBar.setPercentage(count, this.bottleBar.IMAGES);
                 }

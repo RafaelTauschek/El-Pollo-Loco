@@ -1,6 +1,5 @@
 TO DO:
 
-Basic:
 
 -> Create UI/HUD
 -> Responsiveness / Mobile devices
@@ -8,14 +7,3 @@ Basic:
 -> Mobile touchevents
 -> Fullscreen
 
-Gameplay:
-
--> Enemy splicing doesn't work as intended
--> Leveldesign (Coins, Bottles)
-
-Polishing:
-
-
-==> Endboss
--> speed
--> animation

@@ -7,7 +7,7 @@ class Endboss extends MovableObject {
     offsetX = -20;
     offsetWidth = 30;
     offsetHeight = 100;
-    energy = 20;
+    energy = 30;
     firstContact = false;
     hadFirstContact = false;
     playerNearby = false;
@@ -61,7 +61,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 4000;
-        this.speed = 8;
+        this.speed = 25;
         this.animate();
     }
 
