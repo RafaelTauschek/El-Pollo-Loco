@@ -24,6 +24,7 @@ class DrawableObject {
         });
     }
 
+    /* If needed
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken || this instanceof ChickenSmall || 
             this instanceof ThrowableObject || this instanceof Endboss || this instanceof Coin || this instanceof Bottle) {
@@ -34,5 +35,5 @@ class DrawableObject {
             ctx.stroke();
         }
     }
-
+ */
 }

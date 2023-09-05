@@ -31,7 +31,6 @@ class World {
 
     setWorld() {
         this.character.world = this;
-
     }
 
     run() {
@@ -176,7 +175,6 @@ class World {
     checkCollisions() {
         for (let i = this.level.enemies.length - 1; i >= 0; i--) {
             const enemy = this.level.enemies[i];
-    
             if (this.character.isJumpingOn(enemy) && this.character.falling && enemy.energy > 0) {
                 if (!(enemy instanceof Endboss)) {
                     enemy.hit();
@@ -222,7 +220,6 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_x, 0);
-        // ------- SPACE for fixed Objects
         this.addToMap(this.healthBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
@@ -233,7 +230,6 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObject);
         this.ctx.translate(-this.camera_x, 0);
-        // Draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
@@ -251,7 +247,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx)
-        mo.drawFrame(this.ctx);
+        //mo.drawFrame(this.ctx);
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
