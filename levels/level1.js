@@ -4,7 +4,7 @@ let level1;
 function setLevel() {
     level1 = new Level(
         [
-            new Chicken(),
+            new ChickenSmall(),
             new Endboss()
         ],
         [

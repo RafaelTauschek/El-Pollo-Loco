@@ -23,14 +23,13 @@ class Chicken extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DYING);
         this.x = 300 + (Math.random() * 5000);
-        this.speed = 0.8 + Math.random() * 1;
+        this.speed = 1.5 + Math.random() * 1;
         this.animate();
     }
 
 
 
     animate() {
-
         setStoppableInterval( () => {
             if (this.energy <= 0) {
                 this.playAnimation(this.IMAGES_DYING);
@@ -38,6 +37,6 @@ class Chicken extends MovableObject {
                 this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
             } 
-        }, 150)
+        }, 100);
     }
 }

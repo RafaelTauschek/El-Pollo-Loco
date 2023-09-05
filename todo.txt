@@ -15,17 +15,6 @@ Gameplay:
 
 Polishing:
 
-==> Character
--> speed
--> animation
-
-==> Chicken 
--> speed
--> animation
-
-==> ChickenSmall
--> speed
--> animation
 
 ==> Endboss
 -> speed

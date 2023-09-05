@@ -111,7 +111,7 @@ class World {
     }
 
     checkFirstContact() {
-        if (!this.firstContactOccurred && this.character.x > 4450) {
+        if (!this.firstContactOccurred && this.character.x > 3400) {
             this.level.enemies.forEach((enemy) => {
                 if (enemy instanceof Endboss) {
                     enemy.firstContact = true;
