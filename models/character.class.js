@@ -3,7 +3,7 @@ class Character extends MovableObject {
     height = 320;
     width = 130;
     y = 80;
-    speed = 6;
+    speed = 8;
     offsetY = -125;
     offsetX = -5;
     offsetWidth = 15;
@@ -100,40 +100,38 @@ class Character extends MovableObject {
                 this.otherDirection = false;
                 this.idleTimer = 0;
             }
-
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.world.sounds.soundPlay(this.world.sounds.WALKING_SOUND, 1);
                 this.otherDirection = true;
                 this.idleTimer = 0;
             }
-
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump(this.Character);
                 this.world.sounds.soundPlay(this.world.sounds.JUMPING_SOUND, 1);
                 this.idleTimer = 0;
             }
-
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
 
+
         setStoppableInterval(() => {
-            if (this.isHurt()) {
+            if (this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_JUMPING);
+                this.idleTimer = 0;
+            } else if (this.isAboveGround() && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
+                this.playAnimation(this.IMAGES_JUMPING);
+                this.idleTimer = 0;
+            } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURTING);
                 this.world.sounds.soundPlay(this.world.sounds.HURT_SOUND, 0.3);
                 this.idleTimer = 0;
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DYING);
-            } else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                this.playAnimation(this.IMAGES_WALKING);
                 this.idleTimer = 0;
-            } else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                    this.idleTimer = 0;
-                }
-            }
-            if (this.world.keyboard.NOKEY && !this.isAboveGround()) {
+            } else if (this.world.keyboard.NOKEY && !this.isAboveGround()) {
                 this.idleTimer += 50;
                 if (this.idleTimer >= this.idleThreshold) {
                     this.playAnimation(this.IMAGES_LONG_IDLING);
@@ -141,8 +139,7 @@ class Character extends MovableObject {
                     this.playAnimation(this.IMAGES_IDLING);
                 }
             }
-        }, 50);
+        }, 80);
     }
-
 }
 

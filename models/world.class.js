@@ -131,6 +131,15 @@ class World {
         }, 1000 / 60)
     }
 
+    checkIfEndboss(mo) {
+        const endboss = mo.find(obj => obj instanceof Endboss);
+        if (endboss) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     checkThrowObjects() {
         if (this.keyboard.THROW && this.bottleBar.collectedBottles > 0 && !this.isThrowing) {
@@ -165,21 +174,25 @@ class World {
 
 
     checkCollisions() {
-        this.level.enemies.forEach((enemy, index) => {
+        for (let i = this.level.enemies.length - 1; i >= 0; i--) {
+            const enemy = this.level.enemies[i];
+    
             if (this.character.isJumpingOn(enemy) && this.character.falling && enemy.energy > 0) {
                 if (!(enemy instanceof Endboss)) {
                     enemy.hit();
                     this.sounds.soundPlay(this.sounds.CHICKEN_SOUND, 0.5);
-                    setTimeout(() => {
-                        this.level.enemies.splice(index, 1);
-                    }, 1000);
+                    setTimeout( () => {
+                        this.level.enemies.splice(i, 1);
+                        index--;
+                    }, 1000) 
                 }
             } else if (this.character.isColliding(enemy) && !this.character.falling && enemy.energy > 0) {
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);
             }
-        });
+        }
     }
+
 
     checkCollecting(items) {
         items.forEach((item, index) => {
@@ -201,13 +214,7 @@ class World {
         });
     }
 
-    checkInstanceEndboss(mo) {
-        if (mo instanceof Endboss) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

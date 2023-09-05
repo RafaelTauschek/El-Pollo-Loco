@@ -14,7 +14,7 @@ class Soundboard {
     WALKING_SOUND = new Audio('audio/walking.mp3');
     SMASH_SOUND = new Audio('audio/bottle_smash.mp3');
     LOST_SOUND = new Audio('audio/lost.mp3');
-    sound = true;
+    sound = false;
 
 
     stopAllSounds() {
@@ -65,10 +65,12 @@ class Soundboard {
     }
 
     playEndbossTheme() {
-        this.ENDBOSS_INTRO_SOUND.pause();
-        this.ENDBOSS_BACKGROUND_SOUND.volume = 0.3;
-        this.ENDBOSS_BACKGROUND_SOUND.loop = true;
-        this.ENDBOSS_BACKGROUND_SOUND.play();
+        if (this.sound) {
+            this.ENDBOSS_INTRO_SOUND.pause();
+            this.ENDBOSS_BACKGROUND_SOUND.volume = 0.3;
+            this.ENDBOSS_BACKGROUND_SOUND.loop = true;
+            this.ENDBOSS_BACKGROUND_SOUND.play();
+        }
     }
 
 
