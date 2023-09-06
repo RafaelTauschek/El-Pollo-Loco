@@ -57,7 +57,9 @@ class World {
                 this.sounds.soundPlay(this.sounds.LOST_SOUND, 1);
             } else if (this.checkIfWon()) {
                 console.log('You won');
-                endGame();
+                setTimeout(() => {
+                    endGame();
+                }, 1500);
                 this.sounds.stopAllSounds();
                 this.sounds.soundPlay(this.sounds.WIN_SOUND, 1);
 
@@ -163,7 +165,7 @@ class World {
                     bottle.impact = true;
                     enemy.hit();
                     if (enemy instanceof Endboss) {
-                        enemy.playAnimation(enemy.IMAGES_HURT);
+                        //enemy.playAnimation(enemy.IMAGES_HURT);
                         this.sounds.soundPlay(this.sounds.CHICKEN_SOUND, 0.3)
                     }
                 }
