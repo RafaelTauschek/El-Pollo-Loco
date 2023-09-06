@@ -2,7 +2,7 @@ class Endboss extends MovableObject {
 
     height = 500;
     width = 300;
-    y = -30;
+    y = -40;
     offsetY = -80;
     offsetX = -20;
     offsetWidth = 30;
@@ -98,7 +98,10 @@ class Endboss extends MovableObject {
         setStoppableInterval(() => {
             if (this.energy <= 0) {
                 this.playAnimation(this.IMAGES_DEAD);
+                setTimeout(() => {
+                    this.applyGravity();
+                }, 500); 
             }
-        }, 550);
+        }, 500);
     }
 }
