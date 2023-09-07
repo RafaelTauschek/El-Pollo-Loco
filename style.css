@@ -33,7 +33,7 @@ canvas {
     background-color: black;
 }
 
-#start-screen {
+#overlay {
     position: relative;
     margin-top: -480px;
     width: 720px;
@@ -61,6 +61,7 @@ button {
     border-radius: 20px;
     background-color: rgb(216, 155, 42);
     border: 1px solid lightgray;
+    cursor: pointer;
 }
 
 .hud {

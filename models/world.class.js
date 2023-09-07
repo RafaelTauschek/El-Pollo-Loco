@@ -51,18 +51,17 @@ class World {
     checkGameOver() {
         setStoppableInterval(() => {
             if (this.checkIfLost()) {
-                console.log('You lost');
                 endGame();
                 this.sounds.stopAllSounds();
                 this.sounds.soundPlay(this.sounds.LOST_SOUND, 1);
+                showLosingScreen();
             } else if (this.checkIfWon()) {
-                console.log('You won');
                 setTimeout(() => {
                     endGame();
                 }, 1500);
                 this.sounds.stopAllSounds();
                 this.sounds.soundPlay(this.sounds.WIN_SOUND, 1);
-
+                showWinningScreen();
             }
         }, 100)
     }

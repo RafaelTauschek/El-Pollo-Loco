@@ -2,13 +2,14 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 intervalIds = [];
+let overlay = document.getElementById('overlay');
 
 function init() {
     canvas = document.getElementById('canvas'); 
 }
 
 function startGame() {
-    document.getElementById('start-screen').classList.add('display-none');
+    document.getElementById('overlay').classList.add('display-none');
     setLevel();
     world = new World(canvas, keyboard);
 }
@@ -24,59 +25,39 @@ function setStoppableInterval(fn, time) {
 }
 
 
-window.addEventListener('keydown', (e) => {
-    if (e.keyCode == 39) {   
-        keyboard.RIGHT = true;
-        keyboard.NOKEY = false;
+function fullscreen() {
+    let fullscreen = document.getElementById('fullscreen');
+    enterFullscreen(fullscreen);
+}
+
+function enterFullscreen(element)  {
+    if(element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if(element.msRequestFullscreen) {      
+        element.msRequestFullscreen();
+      } else if(element.webkitRequestFullscreen) {  
+        element.webkitRequestFullscreen();
+      }
     }
 
-    if (e.keyCode == 37) {    
-        keyboard.LEFT = true;
-        keyboard.NOKEY = false;
+
+function exitFullscreen() {
+    if(document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if(document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
     }
 
-    if (e.keyCode == 38) {    
-        keyboard.UP = true;
-        keyboard.NOKEY = false;
-    }
-
-
-    if (e.keyCode == 32) {    
-        keyboard.SPACE = true;
-        keyboard.NOKEY = false;
-    }
-
-    if (e.keyCode == 68) {
-        keyboard.THROW = true;
-        keyboard.NOKEY = false;
-    }
-});
 
 
 
-window.addEventListener('keyup', (e) => {
-    if (e.keyCode == 39) {   
-        keyboard.RIGHT = false;
-        keyboard.NOKEY = true;
-    }
 
-    if (e.keyCode == 37) {    
-        keyboard.LEFT = false;
-        keyboard.NOKEY = true;
-    }
 
-    if (e.keyCode == 38) {    
-        keyboard.UP = false;
-        keyboard.NOKEY = true;
-    }
 
-    if (e.keyCode == 32) {    
-        keyboard.SPACE = false;
-        keyboard.NOKEY = true;
-    }
-    if (e.keyCode == 68) {
-        keyboard.THROW = false;
-        keyboard.NOKEY = true;
-    }
-});
+
+
+
+
+
 
