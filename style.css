@@ -1,5 +1,3 @@
-
-
 @font-face {
     font-family: tequilla;
     src: url('./fonts/LaTequilaOut.ttf');
@@ -24,6 +22,10 @@ body {
     height: 100vh;
 }
 
+.display-none {
+    display: none !important;
+}
+
 h1 {
     font-family: tequilla, Arial, Helvetica, sans-serif;
     font-size: 50px;
@@ -33,58 +35,139 @@ canvas {
     background-color: black;
 }
 
-#overlay {
+#game-container {
     position: relative;
-    margin-top: -480px;
-    width: 720px;
     height: 480px;
-    background-image: url('img/9_intro_outro_screens/start/startscreen_1.png');
-    background-size: contain;
+    width: 720px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
     background-size: 100% 100%;
-    background-position: center;
     background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
+
+#start-screen {
+    background-image: url('./img/9_intro_outro_screens/start/startscreen_2.png');
+    z-index: 2;
+}
+
+#winning-screen {
+    background-image: url('./img/5_background/first_half_background.png');
+    z-index: 2;
+}
+
+#losing-screen {
+    background-image: url('img/5_background/second_half_background.png');
+    z-index: 2;
+}
+
+#game-over-img {
+    height: 100%;
+    width: 100%;
+}
+
+.mobile-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    justify-content: flex-end;
+    z-index: 999;
 }
 
-.display-none {
-    display: none !important;
+.mobile-control-left {
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
-button {
-    width: 160px;
-    height: 51px;
-    font-size: 24px;
-    font-size: zabras, Arial, Helvetica, sans-serif;
-    border-radius: 20px;
-    background-color: rgb(216, 155, 42);
-    border: 1px solid lightgray;
+.mobile-control-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.mobile-img {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+}
+
+.bottle-img {
+    height: 40px;
+    width: 40px;
+    transform: rotate(45deg);
+    object-fit: contain;
+}
+
+.mobile-btn {
+    height: 50px;
+    width: 50px;
+    background-color: #FA8128;
+    border: none;
+    border-radius: 50%;
+    padding: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #B56727;
     cursor: pointer;
 }
 
 .hud {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
     display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+    z-index: 999; 
 }
 
+.hud-btn {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: unset;
+    border: unset;
+    cursor: pointer;
+}
+
+.hud-img {
+    height: 48px;
+    width: 48px;
+    object-fit: contain;
+}
+
+
 @media (max-width: 720px) {
-    canvas,
-    #start-screen {
+    canvas {
         width: 100%;
     }
+
     h1 {
         display: none;
     }
 }
 
 @media(max-height: 480px) {
-    canvas,
-    #start-screen {
+    canvas {
         height: 100vh;
     }
+
     h1 {
         display: none;
     }

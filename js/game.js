@@ -2,16 +2,23 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 intervalIds = [];
-let overlay = document.getElementById('overlay');
 
 function init() {
     canvas = document.getElementById('canvas'); 
 }
 
 function startGame() {
-    document.getElementById('overlay').classList.add('display-none');
+    document.getElementById('start-screen').classList.add('display-none');
     setLevel();
     world = new World(canvas, keyboard);
+}
+
+function showLosingScreen() {
+  document.getElementById('losing-screen').classList.remove('display-none');
+}
+
+function showWinningScreen() {
+  document.getElementById('winning-screen').classList.remove('display-none');
 }
 
 
@@ -26,7 +33,7 @@ function setStoppableInterval(fn, time) {
 
 
 function fullscreen() {
-    let fullscreen = document.getElementById('fullscreen');
+    let fullscreen = document.getElementById('game-container');
     enterFullscreen(fullscreen);
 }
 

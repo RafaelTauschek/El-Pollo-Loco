@@ -164,7 +164,6 @@ class World {
                     bottle.impact = true;
                     enemy.hit();
                     if (enemy instanceof Endboss) {
-                        //enemy.playAnimation(enemy.IMAGES_HURT);
                         this.sounds.soundPlay(this.sounds.CHICKEN_SOUND, 0.3)
                     }
                 }

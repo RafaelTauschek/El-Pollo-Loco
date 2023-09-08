@@ -1,9 +1,7 @@
 TO DO:
-
-
 -> Create UI/HUD
 -> Responsiveness / Mobile devices
 -> Losing and Winning Screen
--> Mobile touchevents
--> Fullscreen
+-> Statusbar Endboss
+
 

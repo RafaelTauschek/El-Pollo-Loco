@@ -31,19 +31,36 @@
 <body onload="init()">
     <h1>El Pollo Loco</h1>
 
-    <div id="fullscreen"><canvas id="canvas" width="720" height="480"></canvas></div>
-    <div id="overlay">
-        <div class="hud">        
-            <button>Info</button>
-            <button>Settings</button>
-            <button onclick="startGame()">Start game</button>
+
+    <div id="game-container">
+
+        <canvas id="canvas" width="720" height="480"></canvas>
+        <div id="start-screen" class="overlay"></div>
+        <div id="winning-screen" class="overlay display-none">
+            <img id="game-over-img" src="./img/9_intro_outro_screens/game_over/game over.png" alt="You won">
+        </div>
+        <div id="losing-screen" class="overlay display-none">
+            <img id="game-over-img" src="./img/9_intro_outro_screens/game_over/you lost.png" alt="You lost">
+        </div>
+
+        <div class="hud">
+            <button id="setting-btn" class="hud-btn"><img class="hud-img" src="./img/icons/settings.png" alt="settings"></button>
+            <button id="control-btn" class="hud-btn"><img class="hud-img" src="./img/icons/controller.png" alt="controls"></button>
+            <button id="story-btn" class="hud-btn"><img class="hud-img" src="./img/icons/story.png" alt="story"></button>
+            <button onclick="startGame()" id="start-btn" class="hud-btn"><img class="hud-img" src="./img/icons/start.png" alt="start"></button>
+        </div>
+
+        <div class="mobile-controls">
+            <div class="mobile-control-left">
+                <button id="left-btn" class="mobile-btn"><img class="mobile-img" src="./img/icons/arrow-left.png" alt="left"></button>
+                <button id="right-btn" class="mobile-btn"><img class="mobile-img" src="./img/icons/arrow-right.png" alt="right"></button>
+            </div>
+            <div class="mobile-control-right">
+                <button id="jump-btn" class="mobile-btn"><img class="mobile-img" src="./img/icons/arrow-up.png" alt="jump"></button>
+                <button id="throw-btn" class="mobile-btn"><img class="bottle-img" src="./img/7_statusbars/3_icons/icon_salsa_bottle.png" alt="throw"></button>
+            </div>
         </div>
     </div>
-    <div class="touchbuttons">
-        <button id="left-btn">L</button>
-        <button id="right-btn">R</button>
-        <button id="jump-btn">X</button>
-        <button id="throw-btn">D</button>
-    </div>
+
 </body>
 </html>
