@@ -42,9 +42,9 @@ function home() {
 
 
 const settingButton = document.getElementById('setting-btn');
-const controlButton = document.getElementById('');
-const storyButton = document.getElementById('');
-
+const controlButton = document.getElementById('control-btn');
+const storyButton = document.getElementById('story-btn');
+const startButton = document.getElementById('start-btn');
 
 settingButton.addEventListener('mouseover', () => {
   document.getElementById('setting-tooltip').classList.remove('display-none');
@@ -52,11 +52,31 @@ settingButton.addEventListener('mouseover', () => {
 
 settingButton.addEventListener('mouseout', () => {
   document.getElementById('setting-tooltip').classList.add('display-none');
-})
+});
 
+controlButton.addEventListener('mouseover', () => {
+  document.getElementById('control-tooltip').classList.remove('display-none');
+});
 
+controlButton.addEventListener('mouseout', () => {
+  document.getElementById('control-tooltip').classList.add('display-none');
+});
 
+storyButton.addEventListener('mouseover', () => {
+  document.getElementById('story-tooltip').classList.remove('display-none');
+});
 
+storyButton.addEventListener('mouseout', () => {
+  document.getElementById('story-tooltip').classList.add('display-none');
+});
+
+startButton.addEventListener('mouseover', () => {
+  document.getElementById('start-tooltip').classList.remove('display-none');
+});
+
+startButton.addEventListener('mouseout', () => {
+  document.getElementById('start-tooltip').classList.add('display-none');
+});
 
 
 function endGame() {

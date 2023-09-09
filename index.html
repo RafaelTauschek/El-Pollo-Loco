@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" translate="no">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +29,7 @@
     <script defer src="levels/level1.js"></script>
     <title>El pollo loco</title>
 </head>
+
 <body onload="init()">
     <h1>El Pollo Loco</h1>
 
@@ -44,44 +46,65 @@
         </div>
 
         <div class="hud display-none" id="game-over-btn">
-            <button onclick="home()" class="hud-btn"><img class="hud-img" src="./img/icons/home.png" alt="home"></button>
+            <button onclick="home()" class="hud-btn"><img class="hud-img" src="./img/icons/home.png"
+                    alt="home"></button>
             <div id="home-tooltip"></div>
-            <button onclick="restart()" class="hud-btn"><img class="hud-img" src="./img/icons/restart.png" alt="restart"></button>
+            <button onclick="restart()" class="hud-btn"><img class="hud-img" src="./img/icons/restart.png"
+                    alt="restart"></button>
             <div id="restart-tooltip"></div>
         </div>
         <div class="hud" id="hud">
-            <button id="setting-btn" class="hud-btn"><img class="hud-img" src="./img/icons/settings.png" alt="settings"></button>
-            <div id="setting-tooltip" class="tooltip">
-                settings
+            <div id="hud-settings" class="hud-subsection">
+                <button id="setting-btn" class="hud-btn"><img class="hud-img" src="./img/icons/settings.png"
+                        alt="settings"></button>
+                <div id="setting-tooltip" class="tooltip display-none">
+                    settings
+                </div>
+                <div id="setting-menu"></div>
             </div>
-            <div id="setting-menu"></div>
-            <button id="control-btn" class="hud-btn"><img class="hud-img" src="./img/icons/controller.png" alt="controls"></button>
-            <div id="control-tooltip" class="tooltip">
-                controls
+            <div id="hud-control" class="hud-subsection">
+
+                <button id="control-btn" class="hud-btn"><img class="hud-img" src="./img/icons/controller.png"
+                        alt="controls"></button>
+                <div id="control-tooltip" class="tooltip display-none">
+                    controls
+                </div>
+
+                <div id="control-menu"></div>
             </div>
-            <div id="control-menu"></div>
-            <button id="story-btn" class="hud-btn"><img class="hud-img" src="./img/icons/story.png" alt="story"></button>
-            <div id="story-tooltip" class="tooltip">
-                story
+            <div id="hud-story" class="hud-subsection">
+                <button id="story-btn" class="hud-btn"><img class="hud-img" src="./img/icons/story.png"
+                        alt="story"></button>
+                <div id="story-tooltip" class="tooltip display-none">
+                    story
+                </div>
+                <div id="story-menu"></div>
             </div>
-            <div id="story-menu"></div>
-            <button onclick="startGame()" id="start-btn" class="hud-btn"><img class="hud-img" src="./img/icons/start.png" alt="start"></button>
-            <div id="start-tooltip" class="tooltip">
-                start
+            <div id="hud-start" class="hud-subsection">
+                <button onclick="startGame()" id="start-btn" class="hud-btn"><img class="hud-img"
+                        src="./img/icons/start.png" alt="start"></button>
+                <div id="start-tooltip" class="tooltip display-none">
+                    start
+                </div>
             </div>
         </div>
 
         <div class="mobile-controls">
             <div class="mobile-control-left">
-                <button id="left-btn" class="mobile-btn"><img class="mobile-img" src="./img/icons/arrow-left.png" alt="left"></button>
-                <button id="right-btn" class="mobile-btn"><img class="mobile-img" src="./img/icons/arrow-right.png" alt="right"></button>
+                <button id="left-btn" class="mobile-btn"><img class="mobile-img" src="./img/icons/arrow-left.png"
+                        alt="left"></button>
+                <button id="right-btn" class="mobile-btn"><img class="mobile-img" src="./img/icons/arrow-right.png"
+                        alt="right"></button>
             </div>
             <div class="mobile-control-right">
-                <button id="jump-btn" class="mobile-btn"><img class="mobile-img" src="./img/icons/arrow-up.png" alt="jump"></button>
-                <button id="throw-btn" class="mobile-btn"><img class="bottle-img" src="./img/7_statusbars/3_icons/icon_salsa_bottle.png" alt="throw"></button>
+                <button id="jump-btn" class="mobile-btn"><img class="mobile-img" src="./img/icons/arrow-up.png"
+                        alt="jump"></button>
+                <button id="throw-btn" class="mobile-btn"><img class="bottle-img"
+                        src="./img/7_statusbars/3_icons/icon_salsa_bottle.png" alt="throw"></button>
             </div>
         </div>
     </div>
 
 </body>
+
 </html>
