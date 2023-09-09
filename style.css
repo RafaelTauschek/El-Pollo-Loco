@@ -146,6 +146,15 @@ canvas {
     cursor: pointer;
 }
 
+#start-btn:hover,
+#story-btn:hover,
+#control-btn:hover,
+#setting-btn:hover,
+#home-btn:hover,
+#restart-btn:hover {
+    transform: scale(1.1);
+}
+
 .hud-img {
     height: 48px;
     width: 48px;
