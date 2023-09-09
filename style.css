@@ -130,7 +130,7 @@ canvas {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 50px;
+    gap: 20px;
     align-items: center;
     z-index: 999; 
 }
@@ -150,6 +150,31 @@ canvas {
     height: 48px;
     width: 48px;
     object-fit: contain;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    top: 50px;
+}
+
+#setting-tooltip {
+    left: 180px;   
+}
+
+#control-tooltip {
+    left: 280px;
+}
+
+#story-tooltip {
+    left: 380px;
+}
+
+#start-tooltip {
+    right: 200px;
 }
 
 

@@ -40,6 +40,25 @@ function home() {
   document.getElementById('game-over-btn').classList.add('display-none');
 }
 
+
+const settingButton = document.getElementById('setting-btn');
+const controlButton = document.getElementById('');
+const storyButton = document.getElementById('');
+
+
+settingButton.addEventListener('mouseover', () => {
+  document.getElementById('setting-tooltip').classList.remove('display-none');
+});
+
+settingButton.addEventListener('mouseout', () => {
+  document.getElementById('setting-tooltip').classList.add('display-none');
+})
+
+
+
+
+
+
 function endGame() {
     intervalIds.forEach(clearInterval);
 }
