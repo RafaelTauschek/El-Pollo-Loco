@@ -9,18 +9,36 @@ function init() {
 
 function startGame() {
     document.getElementById('start-screen').classList.add('display-none');
+    document.getElementById('hud').classList.add('display-none');
     setLevel();
     world = new World(canvas, keyboard);
 }
 
 function showLosingScreen() {
   document.getElementById('losing-screen').classList.remove('display-none');
+  document.getElementById('game-over-btn').classList.remove('display-none');
 }
 
 function showWinningScreen() {
   document.getElementById('winning-screen').classList.remove('display-none');
+  document.getElementById('game-over-btn').classList.remove('display-none');
 }
 
+function restart() {
+  document.getElementById('game-over-btn').classList.add('display-none');
+  document.getElementById('losing-screen').classList.add('display-none');
+  document.getElementById('winning-screen').classList.add('display-none');
+  setLevel();
+  world = new World(canvas, keyboard);
+}
+
+function home() {
+  document.getElementById('losing-screen').classList.add('display-none');
+  document.getElementById('winning-screen').classList.add('display-none');
+  document.getElementById('start-screen').classList.remove('display-none');
+  document.getElementById('hud').classList.remove('display-none');
+  document.getElementById('game-over-btn').classList.add('display-none');
+}
 
 function endGame() {
     intervalIds.forEach(clearInterval);

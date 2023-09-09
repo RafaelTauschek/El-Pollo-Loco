@@ -57,9 +57,9 @@ class World {
                 showLosingScreen();
             } else if (this.checkIfWon()) {
                 setTimeout(() => {
-                    endGame();
+                    this.sounds.stopAllSounds();
                 }, 1500);
-                this.sounds.stopAllSounds();
+                endGame();
                 this.sounds.soundPlay(this.sounds.WIN_SOUND, 1);
                 showWinningScreen();
             }

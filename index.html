@@ -43,7 +43,11 @@
             <img id="game-over-img" src="./img/9_intro_outro_screens/game_over/you lost.png" alt="You lost">
         </div>
 
-        <div class="hud">
+        <div class="hud display-none" id="game-over-btn">
+            <button onclick="home()" class="hud-btn"><img class="hud-img" src="./img/icons/home.png" alt="home"></button>
+            <button onclick="restart()" class="hud-btn"><img class="hud-img" src="./img/icons/restart.png" alt="restart"></button>
+        </div>
+        <div class="hud" id="hud">
             <button id="setting-btn" class="hud-btn"><img class="hud-img" src="./img/icons/settings.png" alt="settings"></button>
             <button id="control-btn" class="hud-btn"><img class="hud-img" src="./img/icons/controller.png" alt="controls"></button>
             <button id="story-btn" class="hud-btn"><img class="hud-img" src="./img/icons/story.png" alt="story"></button>
