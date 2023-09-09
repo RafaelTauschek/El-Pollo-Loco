@@ -112,14 +112,14 @@ canvas {
 .mobile-btn {
     height: 50px;
     width: 50px;
-    background-color: #FA8128;
+    background-color: #DABA91;
     border: none;
     border-radius: 50%;
     padding: 1px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #B56727;
+    border: 2px outset #A2724A;
     cursor: pointer;
 }
 
@@ -180,14 +180,43 @@ canvas {
     padding: 21px 16px;
     height: 280px;
     width: 400px;
-    gap: 15px;
     display: flex;
     flex-direction: column;
+}
+
+#control-menu {
+    justify-content: center;
+}
+
+.control-menu-explanation {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-left: 110px;
 }
 
 #hud-close {
     align-self: flex-end;
 }
+
+.close-img {
+    height: 35px;
+    width: 35px;
+    object-fit: contain;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.setting-selection-music,
+.setting-selection-fullscreen {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    gap: 35px;
+}
+
+
 
 @media (max-width: 720px) {
     canvas {

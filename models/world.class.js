@@ -1,5 +1,5 @@
 class World {
-    sounds = new Soundboard();
+    sounds;
     character = new Character();
     healthBar = new HealthBar();
     coinBar = new CoinBar();
@@ -18,8 +18,9 @@ class World {
 
 
 
-    constructor(canvas, keyboard) {
+    constructor(canvas, keyboard, sounds) {
         this.ctx = canvas.getContext('2d');
+        this.sounds = sounds;
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
@@ -45,7 +46,7 @@ class World {
             this.checkPlayerNearby();
             this.checkBossMusic();
             this.checkGameOver();
-        }, 1000 / 60);
+        }, 1000 / 30);
     }
 
     checkGameOver() {
