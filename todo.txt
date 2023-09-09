@@ -1,7 +1,6 @@
 TO DO:
 -> Create UI/HUD
 -> Responsiveness / Mobile devices
--> Losing and Winning Screen
 -> Statusbar Endboss
 
 

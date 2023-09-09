@@ -55,30 +55,47 @@
         </div>
         <div class="hud" id="hud">
             <div id="hud-settings" class="hud-subsection">
-                <button id="setting-btn" class="hud-btn"><img class="hud-img" src="./img/icons/settings.png"
-                        alt="settings"></button>
+                <button onclick="openMenu('setting-menu')" id="setting-btn" class="hud-btn"><img class="hud-img"
+                        src="./img/icons/settings.png" alt="settings"></button>
                 <div id="setting-tooltip" class="tooltip display-none">
                     settings
                 </div>
-                <div id="setting-menu"></div>
+                <div id="setting-menu" class="display-none menu">
+                    <button onclick="closeMenu('setting-menu')" id="hud-close" class="hud-btn"><img class="hud-img"
+                            src="./img/icons/close.png" alt="close"></button>
+                    <div>
+                        <button class="hud-btn"><img class="hud-img" src="./img/icons/sound-off.png"
+                                alt="sound"></button>
+                        <h2>Sound</h2>
+                    </div>
+                    <div>
+                        <button class="hud-btn"><img class="hud-img" src="./img/icons/fullscreen.png"
+                                alt="fullscreen"></button>
+                        <h2>Fullscreen</h2>
+                    </div>
+
+                </div>
             </div>
             <div id="hud-control" class="hud-subsection">
 
-                <button id="control-btn" class="hud-btn"><img class="hud-img" src="./img/icons/controller.png"
-                        alt="controls"></button>
+                <button onclick="openMenu('control-menu')" id="control-btn" class="hud-btn"><img class="hud-img"
+                        src="./img/icons/controller.png" alt="controls"></button>
                 <div id="control-tooltip" class="tooltip display-none">
                     controls
                 </div>
 
-                <div id="control-menu"></div>
+                <div id="control-menu" class="menu display-none"></div>
             </div>
             <div id="hud-story" class="hud-subsection">
-                <button id="story-btn" class="hud-btn"><img class="hud-img" src="./img/icons/story.png"
-                        alt="story"></button>
+                <button onclick="openMenu('story-menu')" id="story-btn" class="hud-btn"><img class="hud-img"
+                        src="./img/icons/story.png" alt="story"></button>
                 <div id="story-tooltip" class="tooltip display-none">
                     story
                 </div>
-                <div id="story-menu"></div>
+                <div id="story-menu" class="menu display-none">
+                    <h2>Pepe Peligroso: Chicken Jumper</h2>
+
+                </div>
             </div>
             <div id="hud-start" class="hud-subsection">
                 <button onclick="startGame()" id="start-btn" class="hud-btn"><img class="hud-img"

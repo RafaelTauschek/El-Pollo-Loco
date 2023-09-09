@@ -168,17 +168,25 @@ canvas {
     font-family: zabras;
     font-size: 24px;
     padding: 8px 10px;
+    z-index: 1;
 }
 
-#setting-menu {
+.menu {
     position: absolute;
-    top: 45px;
+    top: 42px;
     background-image: url('./img/ui/wooden-bord-large.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    padding: 8px 10px;
-    height: 300px;
+    padding: 21px 16px;
+    height: 280px;
     width: 400px;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+#hud-close {
+    align-self: flex-end;
 }
 
 @media (max-width: 720px) {

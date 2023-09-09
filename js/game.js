@@ -41,42 +41,45 @@ function home() {
 }
 
 
-const settingButton = document.getElementById('setting-btn');
-const controlButton = document.getElementById('control-btn');
-const storyButton = document.getElementById('story-btn');
-const startButton = document.getElementById('start-btn');
+const buttonIds = ['setting-btn', 'control-btn', 'story-btn', 'start-btn'];
 
-settingButton.addEventListener('mouseover', () => {
-  document.getElementById('setting-tooltip').classList.remove('display-none');
+buttonIds.forEach((buttonId) => {
+  const button = document.getElementById(buttonId);
+  const tooltipId = buttonId.replace('-btn', '-tooltip');
+  const tooltip = document.getElementById(tooltipId);
+
+  button.addEventListener('mouseover', () => {
+    tooltip.classList.remove('display-none');
+  });
+
+  button.addEventListener('mouseout', () => {
+    tooltip.classList.add('display-none');
+  });
 });
 
-settingButton.addEventListener('mouseout', () => {
-  document.getElementById('setting-tooltip').classList.add('display-none');
-});
 
-controlButton.addEventListener('mouseover', () => {
-  document.getElementById('control-tooltip').classList.remove('display-none');
-});
+function closeAllMenus() {
+  let menus = ['setting-menu', 'control-menu', 'story-menu'];
+  menus.forEach((menuId) => {
+    let menu = document.getElementById(menuId);
+    if (!menu.classList.contains('display-none')) {
+      menu.classList.add('display-none');
+    }
+  });
+}
 
-controlButton.addEventListener('mouseout', () => {
-  document.getElementById('control-tooltip').classList.add('display-none');
-});
 
-storyButton.addEventListener('mouseover', () => {
-  document.getElementById('story-tooltip').classList.remove('display-none');
-});
 
-storyButton.addEventListener('mouseout', () => {
-  document.getElementById('story-tooltip').classList.add('display-none');
-});
+function openMenu(id) {
+  closeAllMenus();
+  let menu = document.getElementById(id);
+  menu.classList.remove('display-none');
+}
 
-startButton.addEventListener('mouseover', () => {
-  document.getElementById('start-tooltip').classList.remove('display-none');
-});
-
-startButton.addEventListener('mouseout', () => {
-  document.getElementById('start-tooltip').classList.add('display-none');
-});
+function closeMenu(id) {
+  let menu = document.getElementById(id);
+  menu.classList.add('display-none');
+}
 
 
 function endGame() {
@@ -87,6 +90,8 @@ function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
     intervalIds.push(id);
 }
+
+
 
 
 function fullscreen() {
