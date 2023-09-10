@@ -42,6 +42,23 @@ function home() {
 }
 
 
+function isMobile() {
+  return navigator.maxTouchPoints > 0 && /Android|iPhone/i.test(navigator.userAgent);
+}
+
+
+window.matchMedia('(orientation: portrait)').addEventListener('change', e => {
+  const portait = e.matches;
+  if (portait) {
+    
+  } else {
+    
+  }
+});
+
+
+
+
 const buttonIds = ['setting-btn', 'control-btn', 'story-btn', 'start-btn', 'home-btn', 'restart-btn'];
 
 buttonIds.forEach((buttonId) => {
