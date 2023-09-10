@@ -28,7 +28,10 @@ class Chicken extends MovableObject {
     }
 
 
-
+/**
+ * Animates the movements and actions based on energy level.
+ * Uses a stoppable interval to control behavior and animations.
+ */
     animate() {
         setStoppableInterval( () => {
             if (this.energy <= 0) {

@@ -16,7 +16,9 @@ class Soundboard {
     LOST_SOUND = new Audio('audio/lost.mp3');
     sound = false;
 
-
+    /**
+     * Stops all currently playing sounds if the 'sound' flag is enabled.
+     */
     stopAllSounds() {
         if (this.sound) {
             this.BACKGROUND_SOUND.pause();
@@ -34,7 +36,12 @@ class Soundboard {
         }
     }
 
-
+    /**
+    * Plays an audio element with a specified volume if the 'sound' flag is enabled.
+    *
+    * @param {HTMLAudioElement} audio - The audio element to play.
+    * @param {number} volume - The volume level to set for the audio (0.0 to 1.0).
+    */
     soundPlay(audio, volume) {
         if (this.sound) {
             audio.volume = volume;
@@ -42,10 +49,18 @@ class Soundboard {
         }
     }
 
+    /**
+    * Stops the playback of an audio element.
+    *
+    * @param {HTMLAudioElement} audio - The audio element to stop.
+    */
     soundStop(audio) {
         audio.pause();
     }
 
+    /**
+    * Plays the background sound with a specified volume and enables looping if the 'sound' flag is enabled.
+    */
     playBackgroundSound() {
         if (this.sound) {
             this.BACKGROUND_SOUND.volume = 0.3;
@@ -54,6 +69,9 @@ class Soundboard {
         }
     }
 
+    /**
+    * Plays the end boss intro sound with a specified volume and triggers the rooster sound after a delay if the 'sound' flag is enabled.
+    */
     playEndbossIntro() {
         if (this.sound) {
             this.ENDBOSS_INTRO_SOUND.volume = 0.3;
@@ -64,6 +82,9 @@ class Soundboard {
         }
     }
 
+    /**
+    * Plays the end boss theme sound with a specified volume, pauses the end boss intro sound, and enables looping if the 'sound' flag is enabled.
+    */
     playEndbossTheme() {
         if (this.sound) {
             this.ENDBOSS_INTRO_SOUND.pause();

@@ -91,6 +91,10 @@ class Character extends MovableObject {
         this.animate();
     }
 
+    /**
+    * Animates the character's movements, actions, and sprite animations based on user input and game state.
+    * Uses two stoppable intervals for controlling character behavior and animations.
+    */
     animate() {
         setStoppableInterval(() => {
             this.world.sounds.soundStop(this.world.sounds.WALKING_SOUND);

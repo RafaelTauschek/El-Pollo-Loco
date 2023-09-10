@@ -12,7 +12,9 @@ class Keyboard {
         this.bindBtnEvents();
     }
 
-
+    /**
+    * Binds event listeners for keydown events to track key presses and update keyboard state.
+    */
     bindKeyEvents() {
         window.addEventListener('keydown', (e) => {
             if (e.keyCode == 39) {
@@ -60,7 +62,10 @@ class Keyboard {
             }
         });
     }
-
+    
+    /**
+    * Binds event listeners for touch events on virtual buttons to track button presses and update keyboard state.
+    */
     bindBtnEvents() {
         document.getElementById('left-btn').addEventListener('touchstart', (e) => {
             e.preventDefault();

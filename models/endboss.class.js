@@ -67,21 +67,23 @@ class Endboss extends MovableObject {
 
 
 
-
+    /**
+    * Manages the animation and behavior of an entity based on its state, energy, and proximity to the player.
+    * Uses two stoppable intervals to control animations and state transitions.
+    */
     animate() {
         let i = 0;
-
         setStoppableInterval(() => {
             if (i < 10) {
                 this.playAnimation(this.IMAGES_ALERT)
-            }   
+            }
             if (this.hadFirstContact && i > 10 && !this.playerNearby && this.energy > 0) {
                 this.playAnimation(this.IMAGES_WALK);
                 this.moveLeft();
             }
             if (this.hadFirstContact && i > 10 && this.playerNearby && this.energy > 0) {
                 this.playAnimation(this.IMAGES_ATTACK);
-                this.moveLeft();   
+                this.moveLeft();
             }
             if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
@@ -99,7 +101,7 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
                 setTimeout(() => {
                     this.applyGravity();
-                }, 500); 
+                }, 500);
             }
         }, 500);
     }

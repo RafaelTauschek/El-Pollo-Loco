@@ -33,7 +33,9 @@ class ThrowableObject extends MovableObject {
         this.throw();
     }
 
-
+    /**
+    * Initiates animation, switching between impact and throw animations based on the 'impact' flag.
+    */
     animate() {
         setStoppableInterval(() => {
             if (this.impact == true) {
@@ -43,13 +45,16 @@ class ThrowableObject extends MovableObject {
             }
         }, 50)
     }
- 
+
+    /**
+    * Initiates a throwing action, setting the vertical speed, applying gravity, and animating the throw.
+    */
     throw() {
         this.speedY = 30;
         this.applyGravity();
         this.animate();
         setInterval(() => {
-        this.x += 10;
+            this.x += 10;
         }, 25);
     }
 } 
