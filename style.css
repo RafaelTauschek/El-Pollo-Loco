@@ -202,6 +202,17 @@ canvas {
     align-items: center;
 }
 
+#story-menu h2 {
+    font-family: zabras;
+    font-size: 32px;
+}
+
+#story-menu p {
+    font-family: zabras;
+    font-size: 24px;
+    text-align: center;
+}
+
 .control-menu-explanation {
     display: flex;
     gap: 20px;

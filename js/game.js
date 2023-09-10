@@ -4,6 +4,7 @@ let keyboard = new Keyboard();
 intervalIds = [];
 sounds = new Soundboard();
 const portait = window.matchMedia('(orientation: portrait)').matches;
+let isFullscreen = false;
 
 /**
  * Initializes the application.
@@ -36,6 +37,9 @@ function startGame() {
   document.getElementById('hud').classList.add('display-none');
   setLevel();
   world = new World(canvas, keyboard, sounds);
+  if (isFullscreen) {
+    enterFullscreen(canvas);
+  }
 }
 
 /**
@@ -250,12 +254,14 @@ const onSwitchFullscreen = document.getElementById('fullscreen-on');
 function fullscreen() {
   let fullscreen = document.getElementById('game-container');
   enterFullscreen(fullscreen);
+  isFullscreen = true;
   offSwitchFullscreen.classList.add('display-none');
   middleSwitchFullscreen.classList.remove('display-none');
   setTimeout(() => {
     middleSwitchFullscreen.classList.add('display-none');
     onSwitchFullscreen.classList.remove('display-none');
   }, 50);
+
 }
 
 /**
@@ -269,6 +275,7 @@ function windowscreen() {
     offSwitchFullscreen.classList.remove('display-none')
   }, 50);
   exitFullscreen();
+  isFullscreen = false;
 }
 
 /**
