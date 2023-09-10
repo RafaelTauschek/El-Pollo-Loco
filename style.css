@@ -197,6 +197,10 @@ canvas {
     justify-content: center;
 }
 
+#story-menu {
+    align-items: center;
+}
+
 .control-menu-explanation {
     display: flex;
     gap: 20px;

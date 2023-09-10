@@ -26,6 +26,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.sounds.soundStop(this.sounds.WIN_SOUND);
         this.sounds.playBackgroundSound();
     }
 
@@ -52,19 +53,21 @@ class World {
     checkGameOver() {
         setStoppableInterval(() => {
             if (this.checkIfLost()) {
-                endGame();
-                this.sounds.stopAllSounds();
-                this.sounds.soundPlay(this.sounds.LOST_SOUND, 1);
-                showLosingScreen();
+                setTimeout(() => {
+                    endGame();
+                    this.sounds.stopAllSounds();
+                    this.sounds.soundPlay(this.sounds.LOST_SOUND, 1);
+                    showLosingScreen();
+                }, 500);
             } else if (this.checkIfWon()) {
                 setTimeout(() => {
                     this.sounds.stopAllSounds();
-                }, 1500);
-                endGame();
-                this.sounds.soundPlay(this.sounds.WIN_SOUND, 1);
-                showWinningScreen();
+                    endGame();
+                    this.sounds.soundPlay(this.sounds.WIN_SOUND, 1);
+                    showWinningScreen();
+                }, 2000);
             }
-        }, 100)
+        }, 100);
     }
 
     checkIfLost() {

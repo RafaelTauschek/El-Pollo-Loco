@@ -30,7 +30,7 @@ function restart() {
   document.getElementById('losing-screen').classList.add('display-none');
   document.getElementById('winning-screen').classList.add('display-none');
   setLevel();
-  world = new World(canvas, keyboard);
+  world = new World(canvas, keyboard, sounds);
 }
 
 function home() {
