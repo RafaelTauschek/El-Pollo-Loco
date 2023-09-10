@@ -196,7 +196,12 @@ class World {
     checkThrowObjects() {
         if (this.keyboard.THROW && this.bottleBar.collectedBottles > 0 && !this.isThrowing) {
             this.isThrowing = true;
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            let bottle;
+            if (this.character.otherDirection) {
+                bottle = new ThrowableObject(this.character.x + 100 - this.character.width, this.character.y + 100, 'left')
+            } else {
+                bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, 'right');
+            }
             this.throwableObject.push(bottle);
             this.bottleBar.collectedBottles--;
             this.sounds.soundPlay(this.sounds.THROW_SOUND, 1)

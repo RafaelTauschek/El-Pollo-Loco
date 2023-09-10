@@ -20,7 +20,9 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
-    max-height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .display-none {
@@ -260,7 +262,7 @@ canvas {
     transform: rotate(90deg);
     height: 200px;
     width: 200px;
-    animation: rotateAnimation 5s linear infinite;
+    animation: rotateAnimation 4s linear infinite;
 }
 
 @keyframes rotateAnimation {
@@ -277,7 +279,6 @@ canvas {
         transform: rotate(-90deg);
     }
 }
-
 
 
 @media (max-width: 720px) {
@@ -297,13 +298,15 @@ canvas {
     }
 }
 
+@media(max-height: 720px) {
+    h1 {
+        display: none;
+    }
+}
+
 @media(max-height: 480px) {
     canvas,
     #game-container {
         height: 100vh;
-    }
-
-    h1 {
-        display: none;
     }
 }
