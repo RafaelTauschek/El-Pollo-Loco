@@ -278,6 +278,12 @@ canvas {
     h1 {
         display: none;
     }
+    .menu {
+        top: -5px;
+    }
+    .tooltip {
+        top: 6px;
+    }
 }
 
 @media(max-height: 480px) {

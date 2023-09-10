@@ -28,18 +28,18 @@ class ChickenSmall extends MovableObject {
     }
 
 
-/**
- * Animates the chicken movements and actions based on energy level.
- * Uses a stoppable interval to control behavior and animations.
- */
+    /**
+     * Animates the chicken movements and actions based on energy level.
+     * Uses a stoppable interval to control behavior and animations.
+     */
     animate() {
-        setStoppableInterval( () => {
+        setStoppableInterval(() => {
             if (this.energy <= 0) {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.energy > 0) {
                 this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
-            } 
+            }
         }, 80);
     }
 }
