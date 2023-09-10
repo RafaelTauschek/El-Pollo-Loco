@@ -165,26 +165,6 @@ class World {
     }
 
     /**
-    * Checks if an object array contains an instance of the 'Endboss' class.
-    * 
-    * This function searches through the provided object array to determine if it
-    * contains an instance of the 'Endboss' class. It returns 'true' if an 'Endboss'
-    * object is found, indicating the presence of an end boss character, and 'false'
-    * otherwise.
-    *
-    * @param {Array} mo - The object array to search through.
-    * @returns {boolean} 'true' if an 'Endboss' object is found, 'false' otherwise.
-    */
-    checkIfEndboss(mo) {
-        const endboss = mo.find(obj => obj instanceof Endboss);
-        if (endboss) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * Checks if the character can throw throwable objects and initiates the throwing action.
      * 
      * This function checks if the character's input indicates a throw action (e.g., pressing a
