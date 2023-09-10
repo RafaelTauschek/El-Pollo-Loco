@@ -49,10 +49,10 @@ function isMobile() {
 
 window.matchMedia('(orientation: portrait)').addEventListener('change', e => {
   const portait = e.matches;
-  if (portait) {
-    
+  if (portait && isMobile()) {
+    document.getElementById('phone-rotation').classList.remove('display-none');
   } else {
-    
+    document.getElementById('phone-rotation').classList.add('display-none');
   }
 });
 
