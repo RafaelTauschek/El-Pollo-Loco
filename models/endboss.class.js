@@ -65,8 +65,6 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-
-
     /**
     * Manages the animation and behavior of an entity based on its state, energy, and proximity to the player.
     * Uses two stoppable intervals to control animations and state transitions.
@@ -74,7 +72,6 @@ class Endboss extends MovableObject {
     animate() {
         let i = 0;
         setStoppableInterval(() => {
-            console.log(this.rightDirection);
             if (i < 10) {
                 this.playAnimation(this.IMAGES_ALERT)
             }

@@ -261,7 +261,6 @@ function fullscreen() {
     middleSwitchFullscreen.classList.add('display-none');
     onSwitchFullscreen.classList.remove('display-none');
   }, 50);
-
 }
 
 /**
