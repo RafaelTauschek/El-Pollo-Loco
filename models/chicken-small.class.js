@@ -4,8 +4,8 @@ class ChickenSmall extends MovableObject {
     height = 70;
     width = 70;
     offsetY = -5;
-    offsetX = 0;
-    offsetWidth = 0;
+    offsetX = -7;
+    offsetWidth = 20;
     offsetHeight = 10;
     energy = 1;
     IMAGES_WALKING = [

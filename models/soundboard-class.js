@@ -14,6 +14,7 @@ class Soundboard {
     WALKING_SOUND = new Audio('audio/walking.mp3');
     SMASH_SOUND = new Audio('audio/bottle_smash.mp3');
     LOST_SOUND = new Audio('audio/lost.mp3');
+    LOBBY_SOUND = new Audio('audio/lobby_theme.mp3');
     sound = false;
 
     /**
@@ -94,15 +95,14 @@ class Soundboard {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Plays the lobby theme sound with a specified volume and enables looping if the 'sound' flag is enabled.
+     */
+    lobbyTheme() {
+        if (this.sound) {
+            this.LOBBY_SOUND.volume = 0.2;
+            this.LOBBY_SOUND.loop = true;
+            this.LOBBY_SOUND.play();
+        }
+    }
 }

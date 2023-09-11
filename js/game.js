@@ -33,13 +33,11 @@ function init() {
  * - Initializes the game world with the provided canvas, keyboard, and sound objects.
  */
 function startGame() {
+  this.sounds.soundStop(this.sounds.LOBBY_SOUND);
   document.getElementById('start-screen').classList.add('display-none');
   document.getElementById('hud').classList.add('display-none');
   setLevel();
   world = new World(canvas, keyboard, sounds);
-  if (isFullscreen) {
-    enterFullscreen(canvas);
-  }
 }
 
 /**
@@ -188,6 +186,7 @@ function musicOn() {
   }, 50);
   soundImage.src = 'img/icons/sound-on.png';
   this.sounds.sound = true;
+  this.sounds.lobbyTheme();
 }
 
 /**
@@ -202,6 +201,7 @@ function musicOff() {
   }, 50);
   soundImage.src = 'img/icons/sound-off.png';
   this.sounds.sound = false;
+  this.sounds.soundStop(this.sounds.LOBBY_SOUND);
 }
 
 /**
@@ -254,6 +254,7 @@ const onSwitchFullscreen = document.getElementById('fullscreen-on');
 function fullscreen() {
   let fullscreen = document.getElementById('game-container');
   enterFullscreen(fullscreen);
+  enterFullscreen(canvas);
   isFullscreen = true;
   offSwitchFullscreen.classList.add('display-none');
   middleSwitchFullscreen.classList.remove('display-none');
@@ -303,8 +304,6 @@ function exitFullscreen() {
     document.webkitExitFullscreen();
   }
 }
-
-
 
 
 

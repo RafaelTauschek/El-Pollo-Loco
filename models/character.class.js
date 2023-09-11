@@ -5,8 +5,8 @@ class Character extends MovableObject {
     y = 80;
     speed = 8;
     offsetY = -125;
-    offsetX = -5;
-    offsetWidth = 15;
+    offsetX = -25;
+    offsetWidth = 55;
     offsetHeight = 140;
     idleTimer = 0;
     idleThreshold = 5000;

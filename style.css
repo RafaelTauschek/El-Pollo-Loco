@@ -41,6 +41,8 @@ canvas {
 
 #game-container {
     position: relative;
+    display: flex;
+    justify-content: center;
     height: 480px;
     width: 720px;
 }
@@ -245,7 +247,9 @@ canvas {
 }
 
 .phone-rotation {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-image: url('img/background.png');
+    background-size: cover;
+    background-position: center;
     top: 0;
     left: 0;
     position: fixed;
@@ -309,5 +313,12 @@ canvas {
     canvas,
     #game-container {
         height: 100vh;
+    }
+}
+
+@media(max-height: 430px) {
+    .hud-img {
+        height: 42px;
+        width: 42px;
     }
 }
