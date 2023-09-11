@@ -33,6 +33,7 @@ function init() {
  * - Initializes the game world with the provided canvas, keyboard, and sound objects.
  */
 function startGame() {
+  canvas.classList.remove('display-none');
   document.getElementById('start-screen').classList.add('display-none');
   document.getElementById('hud').classList.add('display-none');
   setLevel();
@@ -58,6 +59,7 @@ function showLosingScreen() {
  * - Removes the 'display-none' class from the game over button element.
  */
 function showWinningScreen() {
+  canvas.classList.add('display-none');
   document.getElementById('winning-screen').classList.remove('display-none');
   document.getElementById('game-over-btn').classList.remove('display-none');
 }
@@ -71,6 +73,7 @@ function showWinningScreen() {
  * - Initializes the game world with the provided canvas, keyboard, and sound objects.
  */
 function restart() {
+  canvas.classList.remove('display-none')
   document.getElementById('game-over-btn').classList.add('display-none');
   document.getElementById('losing-screen').classList.add('display-none');
   document.getElementById('winning-screen').classList.add('display-none');
