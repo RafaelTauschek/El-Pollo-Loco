@@ -334,13 +334,23 @@ class World {
     * @function
     */
     addToMap(mo) {
-        if (mo.otherDirection) {
-            this.flipImage(mo);
+        if (this.isInView(mo)) {
+            if (mo.otherDirection) {
+                this.flipImage(mo);
+            }
+            mo.draw(this.ctx)
+            if (mo.otherDirection) {
+                this.flipImageBack(mo);
+            }
         }
-        mo.draw(this.ctx)
-        if (mo.otherDirection) {
-            this.flipImageBack(mo);
-        }
+    }
+
+    isInView(mo) {
+      if (mo.x > (this.character.x - 120) || mo.x < (this.character.x + this.character.width + 470) || mo instanceof BackgroundObject) {
+        return true;
+      } else {
+        return false;
+      }
     }
 
     /**
