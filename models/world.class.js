@@ -39,7 +39,7 @@ class World {
     * Runs the main game loop, checking various game conditions and interactions at a fixed interval.
     */
     run() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkCollecting(this.level.coins);
@@ -57,7 +57,7 @@ class World {
     * Checks the game over conditions and triggers appropriate actions if the game is won or lost.
     */
     checkGameOver() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (this.checkIfLost()) {
                 setTimeout(() => {
                     this.sounds.stopAllSounds();
@@ -71,10 +71,11 @@ class World {
                     this.sounds.soundPlay(this.sounds.WIN_SOUND, 1);
                     showWinningScreen();
                     endGame();
-                }, 2000);
+                }, 1500);
             }
         }, 100);
     }
+
     /**
     * Checks if the game is lost based on the character's energy.
     * @returns {boolean} True if the game is lost (character's energy is 0), otherwise false.

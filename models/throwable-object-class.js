@@ -55,11 +55,11 @@ class ThrowableObject extends MovableObject {
         this.applyGravity();
         this.animate();
         if (this.direction == 'right') {
-            setInterval(() => {
+            setStoppableInterval(() => {
                 this.x += 10;
             }, 25);
         } else if (this.direction == 'left') {
-            setInterval(() => {
+            setStoppableInterval(() => {
                 this.x -= 10;
             }, 25);
         }

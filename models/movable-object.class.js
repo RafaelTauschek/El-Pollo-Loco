@@ -10,7 +10,7 @@ class MovableObject extends DrawableObject {
     * The function is executed at a regular interval to update the entity's position.
     */
     applyGravity() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
