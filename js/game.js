@@ -87,9 +87,9 @@ function restart() {
 function home() {
   document.getElementById('losing-screen').classList.add('display-none');
   document.getElementById('winning-screen').classList.add('display-none');
-  document.getElementById('start-screen').classList.remove('display-none');
-  document.getElementById('hud').classList.remove('display-none');
   document.getElementById('game-over-btn').classList.add('display-none');
+  document.getElementById('hud').classList.remove('display-none');
+  document.getElementById('start-screen').classList.remove('display-none');
 }
 
 /**
@@ -227,7 +227,7 @@ function closeMenu(id) {
  * Ends the game by clearing all intervals registered in the 'intervalIds' array.
  */
 function endGame() {
-  intervalIds.forEach(clearInterval);
+  intervalIds.forEach(id => clearInterval(id));
 }
 
 /**

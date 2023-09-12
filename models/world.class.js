@@ -39,7 +39,7 @@ class World {
     * Runs the main game loop, checking various game conditions and interactions at a fixed interval.
     */
     run() {
-        setStoppableInterval(() => {
+        setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkCollecting(this.level.coins);
@@ -57,25 +57,24 @@ class World {
     * Checks the game over conditions and triggers appropriate actions if the game is won or lost.
     */
     checkGameOver() {
-        setStoppableInterval(() => {
+        setInterval(() => {
             if (this.checkIfLost()) {
                 setTimeout(() => {
-                    endGame();
                     this.sounds.stopAllSounds();
                     this.sounds.soundPlay(this.sounds.LOST_SOUND, 1);
                     showLosingScreen();
+                    endGame();
                 }, 500);
             } else if (this.checkIfWon()) {
                 setTimeout(() => {
                     this.sounds.stopAllSounds();
-                    endGame();
                     this.sounds.soundPlay(this.sounds.WIN_SOUND, 1);
                     showWinningScreen();
+                    endGame();
                 }, 2000);
             }
         }, 100);
     }
-
     /**
     * Checks if the game is lost based on the character's energy.
     * @returns {boolean} True if the game is lost (character's energy is 0), otherwise false.
@@ -228,22 +227,21 @@ class World {
      *    it registers a hit on the character and updates the character's health bar.
      */
     checkCollisions() {
-        for (let i = this.level.enemies.length - 1; i >= 0; i--) {
-            const enemy = this.level.enemies[i];
+        this.level.enemies.forEach((enemy, index, intervalIds) => {
             if (this.character.isJumpingOn(enemy) && this.character.falling && enemy.energy > 0) {
                 if (!(enemy instanceof Endboss)) {
                     enemy.hit();
                     this.sounds.soundPlay(this.sounds.CHICKEN_SOUND, 0.5);
                     setTimeout(() => {
-                        this.level.enemies.splice(i, 1);
-                        i--;
-                    }, 1000)
+                        intervalIds.splice(index, 1);
+                        clearInterval(intervalIds);
+                    }, 1000);
                 }
             } else if (this.character.isColliding(enemy) && !this.character.falling && enemy.energy > 0) {
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);
             }
-        }
+        });
     }
 
     /**
@@ -260,7 +258,7 @@ class World {
      * Finally, the collected item is removed from the items array.
      */
     checkCollecting(items) {
-        items.forEach((item, index) => {
+        items.forEach((item, index, intervalIds) => {
             if (this.character.isColliding(item)) {
                 if (item instanceof Coin) {
                     this.coinBar.collectedCoins++;
@@ -275,6 +273,7 @@ class World {
                     this.bottleBar.setPercentage(count, this.bottleBar.IMAGES);
                 }
                 items.splice(index, 1);
+                clearInterval(intervalIds);
             }
         });
     }
@@ -345,12 +344,18 @@ class World {
         }
     }
 
+    /**
+    * Checks if a given point represented by its x-coordinate is within the horizontal view
+    * of a character's position on the screen.
+    * @param {Object} mo - The point to be checked, with an 'x' property representing its x-coordinate.
+    * @returns {boolean} True if the point is within the horizontal view, false otherwise.
+    */
     isInView(mo) {
-      if (mo.x > (this.character.x - 120) || mo.x < (this.character.x + this.character.width + 470) || mo instanceof BackgroundObject) {
-        return true;
-      } else {
-        return false;
-      }
+        if (mo.x > (this.character.x - 120) || mo.x < (this.character.x + this.character.width + 470)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
