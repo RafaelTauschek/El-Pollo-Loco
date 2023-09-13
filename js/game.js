@@ -6,6 +6,10 @@ sounds = new Soundboard();
 const portait = window.matchMedia('(orientation: portrait)').matches;
 let isFullscreen = false;
 
+
+
+
+
 /**
  * Initializes the application.
  * - Retrieves the canvas element with the ID 'canvas'.
@@ -24,6 +28,8 @@ function init() {
     }
   }, 2000);
 }
+
+
 
 /**
  * Starts the game by performing the following actions:
