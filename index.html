@@ -58,7 +58,7 @@
         </div>
         <div class="hud" id="hud">
             <div id="hud-settings" class="hud-subsection">
-                <button onclick="openMenu('setting-menu')" id="setting-btn" class="hud-btn"><img class="hud-img"
+                <button onclick="openMenu('setting-menu')" ontouch="openMenu('setting-menu')" id="setting-btn" class="hud-btn"><img class="hud-img"
                         src="./img/icons/settings.png" alt="settings"></button>
                 <div id="setting-tooltip" class="tooltip display-none">
                     Settings
@@ -93,7 +93,7 @@
             </div>
             <div id="hud-control" class="hud-subsection">
 
-                <button onclick="openMenu('control-menu')" id="control-btn" class="hud-btn"><img class="hud-img"
+                <button onclick="openMenu('control-menu')" ontouch="openMenu('control-menu')" id="control-btn" class="hud-btn"><img class="hud-img"
                         src="./img/icons/controller.png" alt="controls"></button>
                 <div id="control-tooltip" class="tooltip display-none">
                     Controls
@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div id="hud-story" class="hud-subsection">
-                <button onclick="openMenu('story-menu')" id="story-btn" class="hud-btn"><img class="hud-img"
+                <button onclick="openMenu('story-menu')" ontouch="openMenu('story-menu')" id="story-btn" class="hud-btn"><img class="hud-img"
                         src="./img/icons/story.png" alt="story"></button>
                 <div id="story-tooltip" class="tooltip display-none">
                     Story
@@ -135,7 +135,7 @@
                 </div>
             </div>
             <div id="hud-start" class="hud-subsection">
-                <button onclick="startGame()" id="start-btn" class="hud-btn"><img class="hud-img"
+                <button onclick="startGame()" ontouch="startGame()" id="start-btn" class="hud-btn"><img class="hud-img"
                         src="./img/icons/start.png" alt="start"></button>
                 <div id="start-tooltip" class="tooltip display-none">
                     Start
