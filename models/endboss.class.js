@@ -11,6 +11,7 @@ class Endboss extends MovableObject {
     firstContact = false;
     hadFirstContact = false;
     playerNearby = false;
+    playerLeft = true;
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -75,13 +76,25 @@ class Endboss extends MovableObject {
             if (i < 10) {
                 this.playAnimation(this.IMAGES_ALERT)
             }
-            if (this.hadFirstContact && i > 10 && !this.playerNearby && this.energy > 0) {
+            if (this.hadFirstContact && i > 10 && !this.playerNearby && this.energy > 0 && this.playerLeft) {
                 this.playAnimation(this.IMAGES_WALK);
                 this.moveLeft();
+                this.otherDirection = false;
             }
-            if (this.hadFirstContact && i > 10 && this.playerNearby && this.energy > 0) {
+            if (this.hadFirstContact && i > 10 && this.playerNearby && this.energy > 0 && this.playerLeft) {
                 this.playAnimation(this.IMAGES_ATTACK);
                 this.moveLeft();
+                this.otherDirection = false;
+            }
+            if (this.hadFirstContact && i > 10 && !this.playerNearby && this.energy > 0 && !this.playerLeft) {
+                this.playAnimation(this.IMAGES_WALK);
+                this.moveRight();
+                this.otherDirection = true;
+            }
+            if (this.hadFirstContact && i > 10 && this.playerNearby && this.energy > 0 && !this.playerLeft) {
+                this.playAnimation(this.IMAGES_ATTACK);
+                this.moveRight();
+                this.otherDirection = true;
             }
             if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)

@@ -50,6 +50,7 @@ class World {
             this.checkPlayerNearby();
             this.checkBossMusic();
             this.checkGameOver();
+            this.checkPlayerDirection();
         }, 1000 / 30);
     }
 
@@ -280,6 +281,22 @@ class World {
             }
         });
     }
+
+
+    checkPlayerDirection() {
+        this.level.enemies.forEach((enemy) => {
+            if (enemy instanceof Endboss) {
+                if (this.character.x < enemy.x) {
+                    enemy.playerLeft = true;
+                } else {
+                    enemy.playerLeft = false;
+                }
+            }
+        }) 
+    }
+
+
+
 
     /**
      * Clears the canvas and draws game objects on it.
