@@ -254,7 +254,7 @@ const onSwitchFullscreen = document.getElementById('fullscreen-on');
 function fullscreen() {
   let fullscreen = document.getElementById('game-container');
   enterFullscreen(fullscreen);
-  enterFullscreen(canvas);
+  //enterFullscreen(canvas);
   isFullscreen = true;
   offSwitchFullscreen.classList.add('display-none');
   middleSwitchFullscreen.classList.remove('display-none');
