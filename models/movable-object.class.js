@@ -70,6 +70,17 @@ class MovableObject extends DrawableObject {
     }
 
     /**
+    * Checks if the entity has been hurt or damaged recently.
+     *
+     * @returns {boolean} Returns `true` if the entity has been hurt within the last 0.15 seconds.
+    */
+    isRecentlyHurt() {
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
+        return timepassed < 0.15;
+    }
+
+    /**
     * Checks if the entity is currently in a hurt state based on the time since the last hit.
     * @returns {boolean} True if the entity is hurt, otherwise false.
     */

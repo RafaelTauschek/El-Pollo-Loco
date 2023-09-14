@@ -189,7 +189,7 @@ class World {
             this.bottleBar.setPercentage(count, this.bottleBar.IMAGES);
             setTimeout(() => {
                 this.isThrowing = false;
-            }, 150);
+            }, 300);
         }
     }
 
@@ -239,7 +239,9 @@ class World {
                     }, 1000);
                 }
             } else if (this.character.isColliding(enemy) && !this.character.falling && enemy.energy > 0) {
-                this.character.hit();
+                if (!this.character.isRecentlyHurt()) {
+                    this.character.hit();
+                }
                 this.healthBar.setPercentage(this.character.energy, this.healthBar.IMAGES);
             }
         });
