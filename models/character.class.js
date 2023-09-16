@@ -92,58 +92,172 @@ class Character extends MovableObject {
     }
 
     /**
-    * Animates the character's movements, actions, and sprite animations based on user input and game state.
-    * Uses two stoppable intervals for controlling character behavior and animations.
+    * Initiates animations for the character.
+    * This method sets up two intervals: one for moving the character and
+    * another for animating the character's appearance.
     */
     animate() {
-        setStoppableInterval(() => {
-            this.world.sounds.soundStop(this.world.sounds.WALKING_SOUND);
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.world.sounds.soundPlay(this.world.sounds.WALKING_SOUND, 1);
-                this.otherDirection = false;
-                this.idleTimer = 0;
-            }
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft();
-                this.world.sounds.soundPlay(this.world.sounds.WALKING_SOUND, 1);
-                this.otherDirection = true;
-                this.idleTimer = 0;
-            }
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump(this.Character);
-                this.world.sounds.soundPlay(this.world.sounds.JUMPING_SOUND, 1);
-                this.idleTimer = 0;
-            }
-            this.world.camera_x = -this.x + 100;
-        }, 1000 / 60);
+        setStoppableInterval(() => this.moveCharacter(), 1000 / 60);
+        setStoppableInterval(() => this.animateCharacter(), 80);
+    }
 
+    /**
+     * Moves the character within the game world.
+     * This method handles character movement, jumping, sound effects, and camera positioning.
+     */
+    moveCharacter() {
+        this.world.sounds.soundStop(this.world.sounds.WALKING_SOUND);
+        if (this.canMoveRight())
+            this.moveRight();
+        if (this.canMoveLeft())
+            this.moveLeft();
+        if (this.canJump())
+            this.jump();
+        this.world.camera_x = -this.x + 100;
+    }
 
-        setStoppableInterval(() => {
-            if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
-                this.idleTimer = 0;
-            } else if (this.isAboveGround() && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
-                this.playAnimation(this.IMAGES_JUMPING);
-                this.idleTimer = 0;
-            } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURTING);
-                this.world.sounds.soundPlay(this.world.sounds.HURT_SOUND, 0.3);
-                this.idleTimer = 0;
-            } else if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DYING);
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.playAnimation(this.IMAGES_WALKING);
-                this.idleTimer = 0;
-            } else if (this.world.keyboard.NOKEY && !this.isAboveGround()) {
-                this.idleTimer += 50;
-                if (this.idleTimer >= this.idleThreshold) {
-                    this.playAnimation(this.IMAGES_LONG_IDLING);
-                } else {
-                    this.playAnimation(this.IMAGES_IDLING);
-                }
-            }
-        }, 80);
+    /**
+     * Animates the character's appearance based on its current state.
+     * This method plays different animations depending on the character's actions,
+     * such as jumping, walking, being hurt, or being idle.
+     */
+    animateCharacter() {
+        if (this.isAboveGround()) {
+            this.playJumpAnimation();
+        } else if (this.characterJumpAndWalk()) {
+            this.playJumpAnimation();
+        } else if (this.isHurt()) {
+            this.playHurtAnimation();
+        } else if (this.isDead()) {
+            this.playDeadAnimation();
+        } else if (this.characterIsWalking()) {
+            this.playWalkingAnimation();
+        } else if (this.noKeyIsPressed()) {
+            this.playIdlingAnimation();
+        }
+    }
+    /**
+     * Plays the idling animation for the character.
+     * This method increases the idle timer and switches between long idling and regular idling animations
+     * based on the elapsed time compared to the idle threshold.
+     */
+    playIdlingAnimation() {
+        this.idleTimer += 50;
+        if (this.idleTimer >= this.idleThreshold) {
+            this.playAnimation(this.IMAGES_LONG_IDLING);
+        } else {
+            this.playAnimation(this.IMAGES_IDLING);
+        }
+    }
+
+    /**
+     * Checks if no keys are currently pressed and the character is not above ground.
+     */
+    noKeyIsPressed() {
+        return this.world.keyboard.NOKEY && !this.isAboveGround();
+    }
+
+    /**
+    * Plays the walking animation for the character.
+    * This method triggers the character to play the walking animation and resets the idle timer.
+    */
+    playWalkingAnimation() {
+        this.playAnimation(this.IMAGES_WALKING);
+        this.idleTimer = 0;
+    }
+
+    /**
+     * Checks if the character is currently walking.
+     * @returns {boolean}
+     */
+    characterIsWalking() {
+        return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
+    }
+
+    /**
+    * Plays the dead animation for the character.
+    */
+    playDeadAnimation() {
+        this.playAnimation(this.IMAGES_DYING);
+    }
+
+    /**
+     * Playes the hurt animation for the character.
+     */
+    playHurtAnimation() {
+        this.playAnimation(this.IMAGES_HURTING);
+        this.world.sounds.soundPlay(this.world.sounds.HURT_SOUND, 0.3);
+        this.idleTimer = 0;
+    }
+
+    /**
+     * Checks if the character is currently jumping and walking at the same time.
+     * @returns {boolean}
+     */
+    characterJumpAndWalk() {
+        return this.isAboveGround() && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT);
+    }
+
+    /**
+    * Plays the jumping animation for the character.
+    * This method triggers the character to play the walking animation and resets the idle timer.
+    */
+    playJumpAnimation() {
+        this.playAnimation(this.IMAGES_JUMPING);
+        this.idleTimer = 0;
+    }
+
+    /**
+    * Initiates a character jump, playing a sound and resetting the idle timer.
+    */
+    jump() {
+        super.jump(this.Character);
+        this.world.sounds.soundPlay(this.world.sounds.JUMPING_SOUND, 1);
+        this.idleTimer = 0;
+    }
+
+    /**
+    * Moves the character to the left, playing a walking sound and resetting the idle timer.
+    */
+    moveLeft() {
+        super.moveLeft();
+        this.world.sounds.soundPlay(this.world.sounds.WALKING_SOUND, 1);
+        this.otherDirection = true;
+        this.idleTimer = 0;
+    }
+
+    /**
+     * Moves the character to the right, paying a walking sound and resetting the idle timer.
+     */
+    moveRight() {
+        super.moveRight();
+        this.world.sounds.soundPlay(this.world.sounds.WALKING_SOUND, 1);
+        this.otherDirection = false;
+        this.idleTimer = 0;
+    }
+
+    /**
+     * Checks if the character is currently jumping.
+     * @returns {boolean}
+     */
+    canJump() {
+        return this.world.keyboard.SPACE && !this.isAboveGround();
+    }
+
+    /**
+     * Checks if the character can move to the left.
+     * @returns {boolean}
+     */
+    canMoveLeft() {
+        return this.world.keyboard.LEFT && this.x > 0;
+    }
+
+    /**
+     * Checks if the character can move to the right.
+     * @returns {boolean}
+     */
+    canMoveRight() {
+        return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
     }
 }
 
