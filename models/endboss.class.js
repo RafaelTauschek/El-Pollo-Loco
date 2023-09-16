@@ -67,38 +67,13 @@ class Endboss extends MovableObject {
     }
 
     /**
-    * Manages the animation and behavior of an entity based on its state, energy, and proximity to the player.
-    * Uses two stoppable intervals to control animations and state transitions.
+    * Initiates animations and movements for the end boss character.
+    * Uses stoppable intervals to control animation and actions.
     */
     animate() {
         let i = 0;
         setStoppableInterval(() => {
-            if (i < 10) {
-                this.playAnimation(this.IMAGES_ALERT)
-            }
-            if (this.hadFirstContact && i > 10 && !this.playerNearby && this.energy > 0 && this.playerLeft) {
-                this.playAnimation(this.IMAGES_WALK);
-                this.moveLeft();
-                this.otherDirection = false;
-            }
-            if (this.hadFirstContact && i > 10 && this.playerNearby && this.energy > 0 && this.playerLeft) {
-                this.playAnimation(this.IMAGES_ATTACK);
-                this.moveLeft();
-                this.otherDirection = false;
-            }
-            if (this.hadFirstContact && i > 10 && !this.playerNearby && this.energy > 0 && !this.playerLeft) {
-                this.playAnimation(this.IMAGES_WALK);
-                this.moveRight();
-                this.otherDirection = true;
-            }
-            if (this.hadFirstContact && i > 10 && this.playerNearby && this.energy > 0 && !this.playerLeft) {
-                this.playAnimation(this.IMAGES_ATTACK);
-                this.moveRight();
-                this.otherDirection = true;
-            }
-            if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT)
-            }
+            this.endbossAnimationAndMovement(i);
             i++;
             if (this.firstContact) {
                 i = 0;
@@ -106,14 +81,120 @@ class Endboss extends MovableObject {
                 this.hadFirstContact = true;
             }
         }, 150);
-
         setStoppableInterval(() => {
             if (this.energy <= 0) {
-                this.playAnimation(this.IMAGES_DEAD);
-                setTimeout(() => {
-                    this.applyGravity();
-                }, 500);
+                this.playDeadAnimation();
             }
         }, 500);
+    }
+
+    /**
+    * Perform animations and movements for the end boss character based on the current animation frame index.
+    * @param {number} i - The current animation frame index.
+    */
+    endbossAnimationAndMovement(i) {
+        if (i < 10)
+            this.playAnimation(this.IMAGES_ALERT)
+        if (this.canMoveLeft(i))
+            this.moveLeft();
+        if (this.playerIsCloseAndOnLeftSide(i))
+            this.moveLeftAndAttack();
+        if (this.canMoveRight(i))
+            this.moveRight();
+        if (this.playerIsCloseAndOnRightSide(i))
+            this.moveRightAndAttack();
+        if (this.isHurt())
+            this.playAnimation(this.IMAGES_HURT)
+    }
+
+    /**
+     * Determines whether the end boss character can move left based on various conditions.
+     *
+     * @param {number} i - The current animation frame index.
+     * @returns {boolean} True if the character can move left, otherwise false.
+     */
+    canMoveLeft(i) {
+        return this.hadFirstContact && i > 10 && !this.playerNearby && this.energy > 0 && this.playerLeft;
+    }
+
+    /**
+    * Initiates the end boss character's movement to the left.
+    * This method plays a walking animation and updates the character's direction.
+    */
+    moveLeft() {
+        this.playAnimation(this.IMAGES_WALK);
+        super.moveLeft();
+        this.otherDirection = false;
+    }
+
+    /**
+    * Determines whether the player is close and on the left side of the end boss character based on various conditions.
+    *
+    * @param {number} i - The current animation frame index.
+    * @returns {boolean} True if the player is close and on the left side, otherwise false.
+    */
+    playerIsCloseAndOnLeftSide(i) {
+        return this.hadFirstContact && i > 10 && this.playerNearby && this.energy > 0 && this.playerLeft;
+    }
+
+    /**
+    * Initiates the end boss character's movement to the left while performing an attack.
+    * This method plays an attack animation, updates the character's direction, and initiates movement.
+    */
+    moveLeftAndAttack() {
+        this.playAnimation(this.IMAGES_ATTACK);
+        super.moveLeft();
+        this.otherDirection = false;
+    }
+
+    /**
+     * Determines whether the end boss character can move right based on various conditions.
+     *
+     * @param {number} i - The current animation frame index.
+     * @returns {boolean} True if the character can move right, otherwise false.
+     */
+    canMoveRight(i) {
+        return this.hadFirstContact && i > 10 && !this.playerNearby && this.energy > 0 && !this.playerLeft;
+    }
+
+    /**
+    * Initiates the end boss character's movement to the right.
+    * This method plays a walking animation, updates the character's direction, and initiates movement.
+    */
+    moveRight() {
+        this.playAnimation(this.IMAGES_WALK);
+        super.moveRight();
+        this.otherDirection = true;
+    }
+
+    /**
+    * Determines whether the player is close and on the right side of the end boss character based on various conditions.
+    *
+    * @param {number} i - The current animation frame index.
+    * @returns {boolean} True if the player is close and on the right side, otherwise false.
+    */
+    playerIsCloseAndOnRightSide(i) {
+        return this.hadFirstContact && i > 10 && this.playerNearby && this.energy > 0 && !this.playerLeft;
+    }
+
+    /**
+    * Initiates the end boss character's movement to the right while performing an attack.
+    * This method plays an attack animation, updates the character's direction, and initiates movement.
+    */
+    moveRightAndAttack() {
+        this.playAnimation(this.IMAGES_ATTACK);
+        super.moveRight();
+        this.otherDirection = true;
+    }
+
+    /**
+    * Initiates the dead animation for the end boss character.
+    * This method plays a dead animation and applies gravity after a delay.
+    */
+    playDeadAnimation() {
+        this.playAnimation(this.IMAGES_DEAD);
+        setTimeout(() => {
+            this.applyGravity();
+        }, 400);
     }
 }
