@@ -282,7 +282,10 @@ class World {
         });
     }
 
-
+    /**
+    * Checks the direction of the player character relative to the end boss and updates the playerLeft property.
+    * This method iterates through enemies in the level and determines if the player is on the left or right side.
+    */
     checkPlayerDirection() {
         this.level.enemies.forEach((enemy) => {
             if (enemy instanceof Endboss) {
@@ -294,9 +297,6 @@ class World {
             }
         }) 
     }
-
-
-
 
     /**
      * Clears the canvas and draws game objects on it.

@@ -1,8 +1,8 @@
 let level1;
 
-/**
- * Initializes a game level with specified game objects and background elements.
- */
+/*
+* Initializes a game level with specified game objects and background elements.
+*/
 function setLevel() {
     level1 = new Level(
         [
@@ -40,7 +40,7 @@ function setLevel() {
             new BackgroundObject('img/5_background/layers/3_third_layer/2.png', - 719),
             new BackgroundObject('img/5_background/layers/2_second_layer/2.png', - 719),
             new BackgroundObject('img/5_background/layers/1_first_layer/2.png', - 719),
-    
+
             new BackgroundObject('img/5_background/layers/air.png', 0),
             new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 0),
             new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 0),
@@ -49,7 +49,7 @@ function setLevel() {
             new BackgroundObject('img/5_background/layers/3_third_layer/2.png', 719),
             new BackgroundObject('img/5_background/layers/2_second_layer/2.png', 719),
             new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 719),
-    
+
             new BackgroundObject('img/5_background/layers/air.png', 719 * 2),
             new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 719 * 2),
             new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 719 * 2),
@@ -58,7 +58,7 @@ function setLevel() {
             new BackgroundObject('img/5_background/layers/3_third_layer/2.png', 719 * 3),
             new BackgroundObject('img/5_background/layers/2_second_layer/2.png', 719 * 3),
             new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 719 * 3),
-    
+
             new BackgroundObject('img/5_background/layers/air.png', 719 * 4),
             new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 719 * 4),
             new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 719 * 4),
@@ -67,7 +67,7 @@ function setLevel() {
             new BackgroundObject('img/5_background/layers/3_third_layer/2.png', 719 * 5),
             new BackgroundObject('img/5_background/layers/2_second_layer/2.png', 719 * 5),
             new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 719 * 5),
-        
+
             new BackgroundObject('img/5_background/layers/air.png', 719 * 6),
             new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 719 * 6),
             new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 719 * 6),
@@ -76,7 +76,7 @@ function setLevel() {
             new BackgroundObject('img/5_background/layers/3_third_layer/2.png', 719 * 7),
             new BackgroundObject('img/5_background/layers/2_second_layer/2.png', 719 * 7),
             new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 719 * 7),
-    
+
         ],
         [
             new Coin(360, 200),
@@ -126,7 +126,7 @@ function setLevel() {
         [
             new Bottle(250),
             new Bottle(580),
-            new Bottle(810), 
+            new Bottle(810),
             new Bottle(1050),
             new Bottle(1350),
             new Bottle(1650),

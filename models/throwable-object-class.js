@@ -17,7 +17,6 @@ class ThrowableObject extends MovableObject {
 
     impact = false;
 
-
     constructor(x, y, direction) {
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.x = x;
@@ -63,7 +62,6 @@ class ThrowableObject extends MovableObject {
                 this.x -= 10;
             }, 25);
         }
-
     }
 
 } 

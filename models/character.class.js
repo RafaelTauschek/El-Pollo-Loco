@@ -1,5 +1,4 @@
 class Character extends MovableObject {
-
     height = 320;
     width = 130;
     y = 80;
@@ -12,7 +11,6 @@ class Character extends MovableObject {
     idleThreshold = 5000;
     energy = 100;
     falling = false;
-
 
     IMAGES_IDLING = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -39,7 +37,6 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/long_idle/I-19.png',
         'img/2_character_pepe/1_idle/long_idle/I-20.png',
     ];
-
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
